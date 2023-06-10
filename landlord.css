@@ -1,0 +1,139 @@
+.rental-list img {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+#rentalTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#rentalTable th {
+  background-color: yellow;
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+#rentalTable td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.rental-form-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.rental-form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background-color: #f1f1f1;
+  padding: 20px;
+  text-align: center;
+}
+
+.rental-form-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  overflow: auto;
+}
+
+.rental-form-container {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  max-width: 500px;
+}
+
+.rental-list {
+  margin-top: 30px;
+}
+
+.rental-list h2 {
+  text-align: center;
+}
+
+#rentalTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#rentalTable th,
+#rentalTable td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+#rentalTable th {
+  background-color: #f2f2f2;
+}
+
+.applicant-section {
+  margin-top: 30px;
+}
+
+.applicant-section h2 {
+  text-align: center;
+}
+
+#applicantCount {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#applicantList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.applicant-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.applicant-item h4 {
+  margin: 0;
+}
+
+.applicant-item p {
+  margin: 5px 0;
+}
+
+.applicant-item .applicant-actions {
+  text-align: right;
+}
+
+.rental-table-image {
+  max-width: 100px;
+  max-height: 100px;
+}
