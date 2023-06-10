@@ -223,7 +223,7 @@ session_start();
     require "crud.php";
     $crud = new Crud();
     $table = "property";
-    $selectColumns = ["property.rooms", "property.pid", "property.photo", "property.location", "property.description", "property.price", "landlord.username", "landlord.email", "landlord.phone","landlord.lid"];
+    $selectColumns = ["property.rooms", "property.pid", "property.photo", "property.location", "property.description", "property.price", "landlord.lname", "landlord.lemail", "landlord.lphone","landlord.lid"];
     $joinTable = "landlord";
     $joinCondition = "property.landlord = landlord.lid";
   
@@ -231,14 +231,13 @@ session_start();
 
     while ($row = mysqli_fetch_assoc($rentals)) {
       $pid = $row["pid"];
-      $username = $row["username"];
       $photo = $row["photo"];
-      $landlordName = $row["username"];
+      $landlordName = $row["lname"];
       $rooms = $row["rooms"];
       $location = $row["location"];
       $description = $row["description"];
-      $email = $row["email"];
-      $phone = $row["phone"];
+      $email = $row["lemail"];
+      $phone = $row["lphone"];
       $tid = $_SESSION["tid"];
       $lid = $row["lid"];
 

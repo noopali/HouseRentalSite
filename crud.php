@@ -122,13 +122,7 @@ public function getColumnNames($table){
     $query = "SHOW COLUMNS FROM $table";
     $result = mysqli_query($this->con, $query);
     
-    $columns = array();
-    if($result){
-        while($row = mysqli_fetch_assoc($result)){
-            $columns[] = $row['Field'];
-        }
-    }
-    return $columns;
+    return $result;
 }
 public function selectJoin($table, $joinTable, $joinCondition, $selectColumns) {
     $selectCols = implode(", ", $selectColumns);

@@ -5,6 +5,7 @@
   <title>Sign Up</title>
   <link rel="stylesheet" type="text/css" href="">
   <style>
+    /*
     * {
       box-sizing: border-box;
     }
@@ -14,8 +15,8 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      min-height: 100vh; /* Set a minimum height to cover the viewport */
-      overflow-y: scroll; /* Add scrollable behavior to the body */
+      min-height: 100vh; 
+      overflow-y: scroll;
     }
     
     .signup-container {
@@ -57,6 +58,7 @@
       font-size: 12px;
       margin-top: 5px;
     }
+    */
   </style>
 </head>
 <body>

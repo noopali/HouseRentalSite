@@ -64,36 +64,40 @@ if (isset($_POST["signup"])) {
     */else {
         if($role=="admin"){
             $userdetails = [
-                "username" => $username,
-                "password" => $password,
-                "email" => $email,
-                "phone" => $phone
+                "aname" => $username,
+                "apassword" => $password,
+                "aemail" => $email,
+                "aphone" => $phone
             ];
 
         }
-        else if($role = "tenant"){
+        else if($role == "tenant"){
             $userdetails = [
-                "username" => $username,
-                "password" => $password,
-                "email" => $email,
-                "phone" => $phone
+                "tname" => $username,
+                "tpassword" => $password,
+                "temail" => $email,
+                "tphone" => $phone
             ];
 
         }
-        else if($role = "landlord"){
+        else if($role == "landlord"){
             $userdetails = [
-                "username" => $username,
-                "password" => $password,
-                "email" => $email,
-                "phone" => $phone
+                "lname" => $username,
+                "lpassword" => $password,
+                "lemail" => $email,
+                "lphone" => $phone
             ];
         }
         else{
             echo "<script>alert('error')</script>";
         }
+        $emailKey = array_keys($userdetails,$email);
+        $phoneKey = array_keys($userdetails,$phone);
+        $passwordKey = array_keys($userdetails,$password);
+        $nameKey =  array_keys($userdetails,$username);
 
-        $emailResult = $crud->selectAll($table, "=", "email", $email); // Parameters: {Tablename, operator, key, value}
-        $phoneResult = $crud->selectAll($table, "=", "phone", $phone);
+        $emailResult = $crud->selectAll($table, "=",$emailKey[0], $email); // Parameters: {Tablename, operator, key, value}
+        $phoneResult = $crud->selectAll($table, "=",$phoneKey[0], $phone);
         $ecount = mysqli_num_rows($emailResult);
         $pcount = mysqli_num_rows($phoneResult);
 
@@ -103,8 +107,8 @@ if (isset($_POST["signup"])) {
             echo "<script>alert('Phone number already exists');</script>";
         } else {
             if ($password == $rpassword) {
-                $hashedPassword = password_hash($userdetails["password"], PASSWORD_DEFAULT);
-                $userdetails["password"] = $hashedPassword;
+                $hashedPassword = password_hash($userdetails[$passwordKey[0]], PASSWORD_DEFAULT);
+                $userdetails[$passwordKey[0]] = $hashedPassword;
                 $crud->insert($table, $userdetails);
                 // ...
 
