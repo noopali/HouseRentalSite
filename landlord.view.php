@@ -283,7 +283,7 @@ height: 80px;
         $value = $_SESSION["lid"];
         $select = $crud->select($table, $column, $condition, $key, $value);//select column from table where key = value
         $row = mysqli_fetch_assoc($select);
-        $_SESSION['propetyRows'] = $row;
+        $_SESSION['property'] = $select;
         while ($row = mysqli_fetch_assoc($select)) {
           $imgsource = $row["photo"];
           $price = $row["price"];

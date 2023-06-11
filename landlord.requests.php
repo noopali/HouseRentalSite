@@ -217,7 +217,7 @@ $crud = new Crud();
       </thead>
       <tbody id="rentalTableBody">
         <?php
-        $propertyRows = $_SESSION['propetyRows'];
+        $propertySelect =  $_SESSION['property'];
         $table = "booking";
         $lid = $_SESSION['lid'];
         $selectColumns = ["tenant.tname","tenant.tphone","booking.property"];
