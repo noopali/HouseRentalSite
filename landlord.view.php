@@ -8,7 +8,7 @@ $crud = new Crud();
 <html>
 <head>
   <title>Landlord Page</title>
-  <link rel="stylesheet" href="landlord.css">
+  <link rel="stylesheet" href="">
   <style>
     .rental-list img {
   max-width: 100px;
@@ -149,17 +149,104 @@ body {
   max-width: 100px;
   max-height: 100px;
 }
+header {
+position: fixed;
+width: 100%;
+top: 0;
+right: 0;
+z-index: 1000;
+display: flex;
+align-items: center;
+justify-content: space-between;
+background: skyblue;
+padding: 0.3125rem 10px; 
+height: 80px; 
+}
+.logo>img{
+  width: 150px;
+  height: 60px;
+}
+.navbar{
+  display: flex;
+  list-style: none;
+}
+.navbar li{
+  position: relative;
+}
+.navbar a{
+  font-size: 1rem;
+  padding: 0.625rem 20px;
+  color: purple;
+  font-weight: 500;
+  text-decoration: none;
+}
+.navbar a::after{
+  content: '';
+  width: 0;
+  height: 3px;
+  background: purple;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  transition: 0.5s;
+}
+.navbar a:hover::after {
+  width: 100%;
+}
+.header-btn a {
+  padding: 10px 20px;
+  color: purple;
+  font-weight: 500;
+  text-decoration: none;
+}
+.header-btn .log-in {
+  background:purple;
+  color: white;
+  border-radius: 0.5rem;
+}
+.header-btn .log-in:hover {
+   color:skyblue;
+
+}
+
+
+
+.addrental{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.addrental>button{
+  height: 40px;
+  width: 100px;
+  margin: 30px;
+}
   </style>
 </head>
 <script src ="jquery.js"></script>
 
 <body>
-  <div class="header">
+<header>
+    <a href="#" class="logo"><img src="logo.png" alt=""></a>
+    <ul class="navbar">
+      <li><a href="index.php">Home</a></li>
+      <li><a href="landlord.requests.php">Rental Requests</a></li>
+      <li><a href=".php"></a></li>
+        </ul>
+    <div class="header-btn">
+      <a href="logout.php" class="log-in">Log out</a>
+    </div>
+  </header>
     <h1>Welcome, <?php echo $_SESSION["lname"];?></h1>
-    <button id="rentalFormButton">Add Rental</button>
     
-  </div>
-  <a href= "logout.php"><button >logout</button></a>
+    
+   </div>
+   <div class="addrental">
+   <button id="rentalFormButton">Add Rental</button>
+   </div>
+   
+
   <div class="rental-form-popup" id="rentalFormPopup">
     <div class="rental-form-container">
       <h2>Add Rental</h2>
