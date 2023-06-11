@@ -137,6 +137,21 @@ public function selectJoin($table, $joinTable, $joinCondition, $selectColumns) {
       return false;
     }
 }
+
+
+public function selectJoinCondition($table, $joinTable, $joinCondition,$condition, $selectColumns) {
+    $selectCols = implode(", ", $selectColumns);
+
+    $query = "SELECT $selectCols FROM $table INNER JOIN $joinTable ON $joinCondition where $condition";
+
+    $result = mysqli_query($this->con, $query);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+      return $result;
+    } else {
+      return false;
+    }
+}
 }
   
     // ... your existing code ...

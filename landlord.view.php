@@ -232,7 +232,7 @@ height: 80px;
     <ul class="navbar">
       <li><a href="index.php">Home</a></li>
       <li><a href="landlord.requests.php">Rental Requests</a></li>
-      <li><a href=".php"></a></li>
+      <li><a href="landlord.mytenents.php">My Tenants</a></li>
         </ul>
     <div class="header-btn">
       <a href="logout.php" class="log-in">Log out</a>
@@ -276,6 +276,7 @@ height: 80px;
       </thead>
       <tbody id="rentalTableBody">
         <?php
+        $tid = $_SESSION["tid"];
         $table = "property";
         $column = "pid,photo,price,location,rooms";
         $condition = "=";

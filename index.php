@@ -10,9 +10,7 @@
     <header>
         <a href="#" class="logo"><img src="logo.png" alt=""></a>
         <ul class="navbar">
-    <li><a href="index.php">Home</a></li>
-    <li><a href="services">Services</a></li>
-    <li><a href="landlord.php">Add for rent</a></li>
+    <li><a href="index.php">Home</a></li> 
     <li><a href="about-us">About Us</a></li>
     <li><a href="reviews">Reviews</a></li>
 </ul>
