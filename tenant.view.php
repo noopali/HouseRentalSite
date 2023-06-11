@@ -12,8 +12,6 @@ session_start();
   <link rel="stylesheet" href="style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="jquery.js"></script>
-
-
 </head>
 
 <body>
@@ -209,6 +207,7 @@ session_start();
     .no-button{
       background-color: red;
     }
+    
   </style>
   <div class="search-section">
     <h1>Search by Location</h1>
@@ -228,7 +227,7 @@ session_start();
     $joinCondition = "property.landlord = landlord.lid";
   
     $rentals = $crud->selectJoin($table, $joinTable, $joinCondition, $selectColumns);
-
+    
     while ($row = mysqli_fetch_assoc($rentals)) {
       $pid = $row["pid"];
       $photo = $row["photo"];

@@ -230,7 +230,7 @@ height: 80px;
 <header>
     <a href="#" class="logo"><img src="logo.png" alt=""></a>
     <ul class="navbar">
-      <li><a href="index.php">Home</a></li>
+      <li><a href="landlord.view.php">Home</a></li>
       <li><a href="landlord.requests.php">Rental Requests</a></li>
       <li><a href="landlord.mytenents.php">My Tenants</a></li>
         </ul>
@@ -276,14 +276,14 @@ height: 80px;
       </thead>
       <tbody id="rentalTableBody">
         <?php
-        $tid = $_SESSION["tid"];
         $table = "property";
         $column = "pid,photo,price,location,rooms";
         $condition = "=";
         $key = "landlord";
         $value = $_SESSION["lid"];
         $select = $crud->select($table, $column, $condition, $key, $value);//select column from table where key = value
-
+        $row = mysqli_fetch_assoc($select);
+        $_SESSION['propetyRows'] = $row;
         while ($row = mysqli_fetch_assoc($select)) {
           $imgsource = $row["photo"];
           $price = $row["price"];

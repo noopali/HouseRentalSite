@@ -210,32 +210,27 @@ $crud = new Crud();
       <thead>
         <tr>
           <th>Tenant Name</th>
-          <th>Phone</th>
+          <th>Phone</th> 
+          <th>property id</th> 
           <th>Actions</th>
         </tr>
       </thead>
       <tbody id="rentalTableBody">
         <?php
-        // $table = "property";
-        // $column = "pid,photo,price,location,rooms";
-        // $condition = "=";
-        // $key = "landlord";
-        // $value = $_SESSION["lid"];
-        // $select = $crud->select($table, $column, $condition, $key, $value);//select column from table where key = value
+        $propertyRows = $_SESSION['propetyRows'];
         $table = "booking";
         $lid = $_SESSION['lid'];
-        $selectColumns = ["tenant.tname","tenant.tphone"];
+        $selectColumns = ["tenant.tname","tenant.tphone","booking.property"];
         $joinCondition = "booking.tenant = tenant.tid";
         $condition = "booking.landlord = '{$lid}' and booking.request = '1'";
         $select = $crud->selectJoinCondition($table, "tenant", $joinCondition, $condition, $selectColumns);
 
         if ($select) {
-          // Iterate through all rows fetched from the database
           while ($row = mysqli_fetch_assoc($select)) {
             echo "<tr>";
             echo "<td>" . $row["tname"] . "</td>";
             echo "<td>" . $row["tphone"] . "</td>";
-            echo "</tr>";
+            echo "<td>".$row["property"]."</td>";
           }
         } else {
           echo "<script>alert('No Request Found');</script>";
