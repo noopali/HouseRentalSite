@@ -8,7 +8,7 @@ $crud = new Crud();
 <html>
 <head>
   <title>Landlord Page</title>
-  <link rel="stylesheet" href="">
+  <link rel="stylesheet" href="landlord.css">
   <style>
     .rental-list img {
   max-width: 100px;
