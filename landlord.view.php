@@ -155,7 +155,7 @@ body {
 
 <body>
   <div class="header">
-    <h1>Welcome, <?php echo $_SESSION["username"];?></h1>
+    <h1>Welcome, <?php echo $_SESSION["lname"];?></h1>
     <button id="rentalFormButton">Add Rental</button>
     
   </div>
