@@ -289,7 +289,6 @@ height: 80px;
           $rooms = $row["rooms"];
           $location = $row["location"];
           $pid = $row["pid"];
-
           echo "<tr>";
           echo "<td><img src='{$imgsource}' alt=''></td>";
           echo "<td>{$price}</td>";
@@ -301,7 +300,6 @@ height: 80px;
           echo "  </td>";
           echo "</tr>"; 
         }
-       
       ?>
       </tbody>
     </table>
