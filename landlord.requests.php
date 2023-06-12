@@ -187,6 +187,50 @@ $crud = new Crud();
       text-align: center;
       margin-top: 150px;
     }
+
+    /* Confirm box css */
+    .confirm-box{
+      background:rgba(0,0,0,0.5);
+      width:100%;
+      height: 100%;
+      position: fixed;
+      top:0;
+      left:0;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .message-box{
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        line-height:1.5;
+        padding:20px;
+        border-radius: 5px;
+        background-color: white ;
+        height: 200px;
+        width:400px;
+        
+        
+    }
+    .yes-button,.no-button{
+      display:inline-block;
+      height:50px;
+      width:80px;
+
+    }
+    .button-box{
+      display:flex;
+      justify-content: space-evenly;
+      margin-top:40px;  
+    }
+    .yes-button{
+      background-color: green;
+    }
+    .no-button{
+      background-color: red;
+    }
   </style>
 </head>
 <script src="jquery.js"></script>
@@ -210,17 +254,17 @@ $crud = new Crud();
       <thead>
         <tr>
           <th>Tenant Name</th>
-          <th>Phone</th> 
-          <th>property id</th> 
+          <th>Phone</th>
+          <th>property id</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody id="rentalTableBody">
         <?php
-        $propertySelect =  $_SESSION['property'];
+        $propertySelect = $_SESSION['property'];
         $table = "booking";
         $lid = $_SESSION['lid'];
-        $selectColumns = ["tenant.tname","tenant.tphone","booking.property"];
+        $selectColumns = ["booking.bid,tenant.tname","tenant.tid", "tenant.tphone", "booking.property"];
         $joinCondition = "booking.tenant = tenant.tid";
         $condition = "booking.landlord = '{$lid}' and booking.request = '1'";
         $select = $crud->selectJoinCondition($table, "tenant", $joinCondition, $condition, $selectColumns);
@@ -230,7 +274,14 @@ $crud = new Crud();
             echo "<tr>";
             echo "<td>" . $row["tname"] . "</td>";
             echo "<td>" . $row["tphone"] . "</td>";
-            echo "<td>".$row["property"]."</td>";
+            echo "<td>" . $row["property"] . "</td>";
+            $row['tid'];
+          
+            ?>
+          <td><button class="apply-button" onclick="showConfirm('<?php echo $row['bid'];?>','<?php $table?> ')">Approve</button></td>
+
+            <?php
+           
           }
         } else {
           echo "<script>alert('No Request Found');</script>";
@@ -259,6 +310,61 @@ $crud = new Crud();
 
     // Add event listener to the close popup button
     document.getElementById('closePopupButton').addEventListener('click', closeRentalForm);
+
+
+
+    function showConfirm(bit, table) {
+
+      var message = "Are you sure you want to apporve the request?";
+      var confirmBox = document.createElement("div");
+      confirmBox.classList.add('confirm-box');
+
+      var messageBox = document.createElement("div");
+      messageBox.classList.add('message-box');
+      messageBox.textContent = message;
+      confirmBox.appendChild(messageBox);
+      document.body.appendChild(confirmBox);
+
+      var buttonBox = document.createElement("div");
+      buttonBox.classList.add("button-box");
+      messageBox.appendChild(buttonBox);
+
+      var yesLink = document.createElement("a");
+      var yesButton = document.createElement("button");
+      yesButton.classList.add("yes-button");
+      yesButton.textContent = "Yes";
+      buttonBox.appendChild(yesButton);
+
+      var noLink = document.createElement("a");
+      var noButton = document.createElement("button");
+      noButton.classList.add("no-button");
+      noButton.textContent = "No";
+      buttonBox.appendChild(noButton);
+
+      yesButton.addEventListener('click', function () {
+        confirmBox.style.display = "none";
+
+        let ajax = () => {
+
+
+          let req = new XMLHttpRequest();
+          req.open('post', 'tenant.operations.php', true);
+          req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          req.send("pid=" + pid + "&tid=" + tid + "&table=" + table + "&lid=" + lid + "&table=" + table + "&action=requestRent");
+          req.onload = function () {
+            alert(this.responseText);
+          }
+
+        }
+
+        ajax();
+
+      });
+
+      noButton.addEventListener('click', function () {
+        confirmBox.style.display = "none";
+      })
+    }
 
 
   </script>
