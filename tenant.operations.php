@@ -4,6 +4,7 @@ require "crud.php";
 
 // Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if($_POST['action']=="requestRent"){
     $crud = new Crud();
     $table = $_POST['table'];
     $tid = $_POST['tid'];
@@ -14,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $previousRequest = $crud->selectCondition($table, $column, $condition);
     $requestCount = mysqli_num_rows($previousRequest);
     $row = mysqli_fetch_assoc($previousRequest);
-
     if ($requestCount > 0) {
         // Request already sent
         $response = array('status' => 0, 'message' => 'Request already sent');
@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $response = array('status' => 1, 'message' => 'Request sent to tenant');
         echo json_encode($response);
     }
+}
 } else {
     $response = array('status' => 0, 'message' => 'Error');
 }

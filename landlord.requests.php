@@ -276,12 +276,12 @@ $crud = new Crud();
             echo "<td>" . $row["tphone"] . "</td>";
             echo "<td>" . $row["property"] . "</td>";
             $row['tid'];
+            $row['bid'];
           
             ?>
-          <td><button class="apply-button" onclick="showConfirm('<?php echo $row['bid'];?>','<?php $table?> ')">Approve</button></td>
+          <td><button class="apply-button" onclick="showConfirm('<?php echo $row['bid'];?>','<?php echo $table; ?> ')">Approve</button></td>
 
             <?php
-           
           }
         } else {
           echo "<script>alert('No Request Found');</script>";
@@ -291,29 +291,7 @@ $crud = new Crud();
     </table>
   </div>
   <script>
-    // Function to open the rental form
-    function openRentalForm() {
-      rentalFormPopup.style.display = 'block';
-    }
-
-    // Function to close the rental form
-    function closeRentalForm() {
-      rentalFormPopup.style.display = 'none';
-      rentalForm.reset();
-      rentalForm.dataset.mode = 'add';
-      rentalForm.dataset.rentalId = '';
-      document.getElementById('rentalFormSubmit').textContent = 'Rent Now';
-    }
-
-    // Add event listener to the rental form button
-    document.getElementById('rentalFormButton').addEventListener('click', openRentalForm);
-
-    // Add event listener to the close popup button
-    document.getElementById('closePopupButton').addEventListener('click', closeRentalForm);
-
-
-
-    function showConfirm(bit, table) {
+    function showConfirm(bid,table) {
 
       var message = "Are you sure you want to apporve the request?";
       var confirmBox = document.createElement("div");
@@ -345,16 +323,13 @@ $crud = new Crud();
         confirmBox.style.display = "none";
 
         let ajax = () => {
-
-
           let req = new XMLHttpRequest();
-          req.open('post', 'tenant.operations.php', true);
+          req.open('post', 'landlord.operations.php', true);
           req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-          req.send("pid=" + pid + "&tid=" + tid + "&table=" + table + "&lid=" + lid + "&table=" + table + "&action=requestRent");
+          req.send("bid=" + bid + "&table=" + table + "&action=approve");
           req.onload = function () {
-            alert(this.responseText);
+            alert("Request Accepted!");
           }
-
         }
 
         ajax();

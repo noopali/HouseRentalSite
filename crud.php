@@ -56,14 +56,15 @@ public function select($table,$column,$condition,$key,$value){ //selects specifi
     return $query;
 }
 
-public function updateOneById($table,$column,$newValue,$key,$value){
+public function updateOne($table,$column,$updatedValue,$key,$operator,$value){
 
-    $updateQuery = "update ".$table. " set ".$column." = " .$newValue." where ".$key." = ".$value;
+    $updateQuery = "update ".$table. " set ".$column." = " .$updatedValue." where ".$key.$operator.$value;
 
     $query = mysqli_query($this->con,$updateQuery);
     echo $updateQuery;
   
 }
+
 public function updateAll($table,$update_arr,$key,$value){  
 
     $update = "update ".$table. " set ";
@@ -153,6 +154,5 @@ public function selectJoinCondition($table, $joinTable, $joinCondition,$conditio
     }
 }
 }
-  
-    // ... your existing code ...
+
   
