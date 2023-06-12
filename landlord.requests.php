@@ -266,7 +266,7 @@ $crud = new Crud();
         $lid = $_SESSION['lid'];
         $selectColumns = ["booking.bid,tenant.tname","tenant.tid", "tenant.tphone", "booking.property"];
         $joinCondition = "booking.tenant = tenant.tid";
-        $condition = "booking.landlord = '{$lid}' and booking.request = '1'";
+        $condition = "booking.landlord = '{$lid}' and booking.request = '1' and booking.status = '0'";
         $select = $crud->selectJoinCondition($table, "tenant", $joinCondition, $condition, $selectColumns);
 
         if ($select) {
@@ -329,6 +329,7 @@ $crud = new Crud();
           req.send("bid=" + bid + "&table=" + table + "&action=approve");
           req.onload = function () {
             alert("Request Accepted!");
+
           }
         }
 
