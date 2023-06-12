@@ -64,7 +64,6 @@ public function updateOne($table,$column,$updatedValue,$key,$operator,$value){
     echo $updateQuery;
   
 }
-
 public function updateAll($table,$update_arr,$key,$value){  
 
     $update = "update ".$table. " set ";
@@ -92,17 +91,7 @@ public function delete($table,$key,$value){
         echo "delete success";
 
     }
-
 }
-
-public function deleteAllById($table,$id){
-    $delete = "delete from ".$table;
-    $query = mysqli_query($this->con,$delete);
-    if($query){
-        echo "all data deleted";
-    }
-}
-
 public function Exists($table,$key,$value){
     $sql = "select * from ". $table." where ".$key." = '{$value}'";
     $result = mysqli_query($this->con,$sql);
@@ -114,9 +103,7 @@ public function Exists($table,$key,$value){
         else{
             return false;
         }
-
     }
-    
 }
 
 public function getColumnNames($table){
@@ -153,6 +140,31 @@ public function selectJoinCondition($table, $joinTable, $joinCondition,$conditio
       return false;
     }
 }
-}
 
-  
+
+function multiJoinQuery($tables, $joins, $conditions)
+{
+    // Create a PDO connection to your database
+    $pdo = new PDO('mysql:host=localhost;dbname=your_database', 'username', 'password');
+    
+    // Prepare the query
+    $query = "SELECT * FROM $tables[0]";
+    
+    // Generate the join statements
+    for ($i = 1; $i < count($tables); $i++) {
+        $query .= " JOIN $tables[$i] ON {$joins[$i-1]} ";
+    }
+    
+    // Add the conditions if provided
+    if (!empty($conditions)) {
+        $query .= " WHERE " . implode(" AND ", $conditions);
+    }
+    
+    // Execute the query
+    $statement = $pdo->query($query);
+    
+    // Fetch and return the results
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
+}
+}

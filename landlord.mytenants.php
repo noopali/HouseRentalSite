@@ -234,20 +234,19 @@ $crud = new Crud();
   </style>
 </head>
 <script src="jquery.js"></script>
-
 <body>
   <header>
     <a href="landlord.view.php" class="logo"><img src="logo.png" alt=""></a>
     <ul class="navbar">
       <li><a href="landlord.view.php">Home</a></li>
       <li><a href="landlord.requests.php">Rental Requests</a></li>
-      <li><a href="landlord.mytenants.php">My Tenants</a></li>
+      <li><a href=".php">My Tenants</a></li>
     </ul>
     <div class="header-btn">
       <a href="logout.php" class="log-in">Log out</a>
     </div>
   </header>
-  <h1 class="Requests heading">Rental Requests</h1>
+  <h1 class="Requests heading">My Tenants</h1>
 
   <div class="rental-list">
     <table id="rentalTable">
@@ -256,7 +255,6 @@ $crud = new Crud();
           <th>Tenant Name</th>
           <th>Phone</th>
           <th>property id</th>
-          <th>Actions</th>
         </tr>
       </thead>
       <tbody id="rentalTableBody">
@@ -266,7 +264,7 @@ $crud = new Crud();
         $lid = $_SESSION['lid'];
         $selectColumns = ["booking.bid,tenant.tname","tenant.tid", "tenant.tphone", "booking.property"];
         $joinCondition = "booking.tenant = tenant.tid";
-        $condition = "booking.landlord = '{$lid}' and booking.request = '1' and booking.status = '0 '";
+        $condition = "booking.landlord = '{$lid}' and booking.request = '1' and booking.status = '1 '";
         $select = $crud->selectJoinCondition($table, "tenant", $joinCondition, $condition, $selectColumns);
 
         if ($select) {
@@ -277,11 +275,6 @@ $crud = new Crud();
             echo "<td>" . $row["property"] . "</td>";
             $row['tid'];
             $row['bid'];
-          
-            ?>
-          <td><button class="apply-button" onclick="showConfirm('<?php echo $row['bid'];?>','<?php echo $table; ?> ')">Approve</button></td>
-
-            <?php
           }
         } else {
           echo "<script>alert('No Request Found');</script>";
