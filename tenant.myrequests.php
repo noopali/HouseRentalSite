@@ -138,7 +138,7 @@ session_start();
     }
 
     .rent-card .apply-button {
-      background: purple;
+      background: red;
       color: #fff;
       border: none;
       padding: 10px 20px;
@@ -221,7 +221,7 @@ session_start();
     $crud = new Crud();
     $tables = ['booking','landlord','property'];
     $joins = ["booking.landlord = landlord.lid", "booking.property = property.pid"];
-    $conditions = ['booking.status = 0'];
+    $conditions = ['booking.status = 1'];
     $selectColumns = ["property.rooms", "property.pid", "property.photo", "property.location", "property.description", "property.price", "landlord.lname", "landlord.lemail", "landlord.lphone","landlord.lid"];
     $rentals = $crud->multiJoinQuery($tables, $joins, $conditions,$selectColumns);
     // $table = "property";
@@ -271,10 +271,10 @@ session_start();
           </div>
         </div>
         <?php $table = "booking";
-              $tid = $_SESSION['tid'];
-              
+              $tid = $_SESSION['tid'];     
         ?>
-        <button class="apply-button" onclick = showConfirm('<?php echo $pid; ?>','<?php echo $tid;?>','<?php echo $lid;?>','<?php echo $table;?>')>Apply</button>
+        <button class="apply-button" onclick="showConfirm(<?php echo $pid; ?>,'<?php echo $tid;?>','<?php echo $lid;?>','<?php echo $table;?>')">Cancel</button>
+
 
         <div id="apply-form" class="apply-form">
         </div>

@@ -220,11 +220,12 @@ session_start();
     <?php
     require "crud.php";
     $crud = new Crud();
-    $tables = ['booking','landlord','property'];
-    $joins = ["booking.landlord = landlord.lid", "booking.property = property.pid"];
-    $conditions = ['booking.status = 0'];
+    $table = "property";
     $selectColumns = ["property.rooms", "property.pid", "property.photo", "property.location", "property.description", "property.price", "landlord.lname", "landlord.lemail", "landlord.lphone","landlord.lid"];
-    $rentals = $crud->multiJoinQuery($tables, $joins, $conditions,$selectColumns);
+    $joinTable = "landlord";
+    $joinCondition = "property.landlord = landlord.lid";
+  
+    $rentals = $crud->selectJoin($table, $joinTable, $joinCondition, $selectColumns);
     
     while ($row = mysqli_fetch_assoc($rentals)) {
       $pid = $row["pid"];
@@ -270,7 +271,8 @@ session_start();
               $tid = $_SESSION['tid'];
               
         ?>
-        <button class="apply-button" onclick = showConfirm('<?php echo $pid; ?>','<?php echo $tid;?>','<?php echo $lid;?>','<?php echo $table;?>')>Apply</button>
+       <button class="apply-button" onclick="showConfirm('<?php echo $pid; ?>','<?php echo $tid;?>','<?php echo $lid;?>','<?php echo $table;?>')">Apply</button>
+
 
         <div id="apply-form" class="apply-form">
         </div>
