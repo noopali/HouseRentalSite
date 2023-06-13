@@ -271,14 +271,16 @@ $crud = new Crud();
 
         if ($select) {
           while ($row = mysqli_fetch_assoc($select)) {
-            echo "<tr>";
-            echo "<td>" . $row["tname"] . "</td>";
-            echo "<td>" . $row["tphone"] . "</td>";
-            echo "<td>" . $row["property"] . "</td>";
+            ?>
+            <tr>
+            <td> <?php echo $row["tname"] ?> </td>
+            <td> <?php echo $row["tphone"] ?> </td>
+            <td> <?php echo $row["property"] ?> </td>
+            <?php
             $row['tid'];
             $row['bid'];
             ?>
-          <<td><button class="apply-button" onclick="showConfirm('<?php echo $row['bid'];?>','<?php echo $table; ?> ')">Approve</button></td>*/
+          <td><button class="apply-button" onclick="showConfirm('<?php echo $row['bid'];?>','<?php echo $table; ?> ')">Approve</button></td>
            
            <?php
           }

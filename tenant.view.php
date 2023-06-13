@@ -19,7 +19,7 @@ session_start();
     <a href="#" class="logo"><img src="logo.png" alt=""></a>
     <ul class="navbar">
       <li><a href="index.php">Home</a></li>
-      <li><a href="services">My Requests</a></li>
+      <li><a href="tenant.myrequests.php">My Requests</a></li>
       <li><a href="about-us">About Us</a></li>
       <li><a href="reviews">Reviews</a></li>
     </ul>

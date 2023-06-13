@@ -5,7 +5,6 @@
   <title>Sign Up</title>
   <link rel="stylesheet" type="text/css" href="">
   <style>
-    /*
     * {
       box-sizing: border-box;
     }
@@ -58,7 +57,7 @@
       font-size: 12px;
       margin-top: 5px;
     }
-    */
+  
   </style>
 </head>
 <body>
