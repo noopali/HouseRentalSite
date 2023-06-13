@@ -277,11 +277,10 @@ $crud = new Crud();
             echo "<td>" . $row["property"] . "</td>";
             $row['tid'];
             $row['bid'];
-          
             ?>
-          <td><button class="apply-button" onclick="showConfirm('<?php echo $row['bid'];?>','<?php echo $table; ?> ')">Approve</button></td>
-
-            <?php
+          <<td><button class="apply-button" onclick="showConfirm('<?php echo $row['bid'];?>','<?php echo $table; ?> ')">Approve</button></td>*/
+           
+           <?php
           }
         } else {
           echo "<script>alert('No Request Found');</script>";
@@ -328,7 +327,8 @@ $crud = new Crud();
           req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
           req.send("bid=" + bid + "&table=" + table + "&action=approve");
           req.onload = function () {
-            alert("Request Accepted!");
+            alert("Request Accepted!"); 
+            window.location.href = "landlord.mytenants.php";
 
           }
         }

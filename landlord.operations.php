@@ -6,13 +6,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //checks what is the action
     if ($_POST['action'] == "approve") {
         $crud = new Crud();
+       
         $table = $_POST['table'];
         $bid = $_POST['bid'];
         $column = "status";
-        $updatedValue = "1";
+            $updatedValue = "1";
         $crud->updateOne($table,$column,$updatedValue,"bid","=",$bid);
+        }
     }
-} else {
+    else {
     $response = array('status' => 0, 'message' => 'Error');
+    json_encode($response);
 }
 ?>

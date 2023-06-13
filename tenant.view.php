@@ -273,6 +273,7 @@ session_start();
               
         ?>
         <button class="apply-button" onclick = showConfirm('<?php echo $pid; ?>','<?php echo $tid;?>','<?php echo $lid;?>','<?php echo $table;?>')>Apply</button>
+
         <div id="apply-form" class="apply-form">
         </div>
       </div>
