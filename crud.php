@@ -142,13 +142,11 @@ public function selectJoinCondition($table, $joinTable, $joinCondition,$conditio
 }
 
 
-function multiJoinQuery($tables, $joins, $conditions)
+function multiJoinQuery($tables, $joins, $conditions,$selectColumns)
 {
-    // Create a PDO connection to your database
-    $pdo = new PDO('mysql:host=localhost;dbname=your_database', 'username', 'password');
-    
+    $selectCols = implode(", ", $selectColumns);
     // Prepare the query
-    $query = "SELECT * FROM $tables[0]";
+    $query = "SELECT $selectCols  FROM $tables[0]";
     
     // Generate the join statements
     for ($i = 1; $i < count($tables); $i++) {
@@ -159,12 +157,10 @@ function multiJoinQuery($tables, $joins, $conditions)
     if (!empty($conditions)) {
         $query .= " WHERE " . implode(" AND ", $conditions);
     }
-    
     // Execute the query
-    $statement = $pdo->query($query);
+    $statement = mysqli_query($this->con,$query);
     
-    // Fetch and return the results
-    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-    return $results;
+    return $statement;
 }
+
 }

@@ -252,7 +252,7 @@ height: 80px;
       <h2>Add Rental</h2>
       <form id="rentalForm" action="landlord.php" method="post" enctype="multipart/form-data">
         <input type="text" id="locationInput" placeholder="Location" name="location" required>
-        <input type="file" id="photoInput" name="photo" required>
+        <input type="file" id="photoInput" name="photo" accept="image/jpeg, image/png, image/jpg"required>
         <input type="number" id="priceInput" placeholder="Price" name="price" required>
         <input type="text" id="roomsInput" placeholder="Number of rooms" name="rooms" required>
         <textarea id="descriptionInput" placeholder="Description" name="description" required></textarea>

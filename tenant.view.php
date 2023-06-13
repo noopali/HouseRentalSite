@@ -13,7 +13,6 @@ session_start();
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="jquery.js"></script>
 </head>
-
 <body>
   <header>
     <a href="#" class="logo"><img src="logo.png" alt=""></a>
@@ -221,12 +220,11 @@ session_start();
     <?php
     require "crud.php";
     $crud = new Crud();
-    $table = "property";
+    $tables = ['booking','landlord','property'];
+    $joins = ["booking.landlord = landlord.lid", "booking.property = property.pid"];
+    $conditions = ['booking.status = 0'];
     $selectColumns = ["property.rooms", "property.pid", "property.photo", "property.location", "property.description", "property.price", "landlord.lname", "landlord.lemail", "landlord.lphone","landlord.lid"];
-    $joinTable = "landlord";
-    $joinCondition = "property.landlord = landlord.lid";
-  
-    $rentals = $crud->selectJoin($table, $joinTable, $joinCondition, $selectColumns);
+    $rentals = $crud->multiJoinQuery($tables, $joins, $conditions,$selectColumns);
     
     while ($row = mysqli_fetch_assoc($rentals)) {
       $pid = $row["pid"];

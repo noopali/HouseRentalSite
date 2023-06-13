@@ -241,6 +241,7 @@ $crud = new Crud();
     <ul class="navbar">
       <li><a href="landlord.view.php">Home</a></li>
       <li><a href="landlord.requests.php">Rental Requests</a></li>
+      <!-- <li><a href="landlord.mytenants.php">My Tenants</a></li> -->
       <li><a href="landlord.mytenants.php">My Tenants</a></li>
     </ul>
     <div class="header-btn">
