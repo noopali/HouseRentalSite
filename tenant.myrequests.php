@@ -20,8 +20,8 @@ session_start();
     <ul class="navbar">
       <li><a href="tenant.view.php">Home</a></li>
       <li><a href="tenant.myrequests.php">My Requests</a></li>
-      <li><a href="about-us">About Us</a></li>
-      <li><a href="reviews">Reviews</a></li>
+      <li><a href="about-us">My Bookings</a></li>
+      <li><a href="reviews">My Profile</a></li>
     </ul>
     <div class="header-btn">
       <a href="logout.php" class="log-in">Log out</a>
@@ -217,20 +217,31 @@ session_start();
   <div class="rents-container">
     <?php
     require "crud.php";
-
     $crud = new Crud();
-    $tables = ['booking','landlord','property'];
-    $joins = ["booking.landlord = landlord.lid", "booking.property = property.pid"];
-    $conditions = ['booking.status = 1'];
-    $selectColumns = ["property.rooms", "property.pid", "property.photo", "property.location", "property.description", "property.price", "landlord.lname", "landlord.lemail", "landlord.lphone","landlord.lid"];
-    $rentals = $crud->multiJoinQuery($tables, $joins, $conditions,$selectColumns);
+     $tid = $_SESSION['tid'];
+    $select = ["property.rooms", "property.pid", "property.photo", "property.location", "property.description", "property.price", "landlord.lname", "landlord.lemail", "landlord.lphone", "landlord.lid"]; 
+    $tables = ['property', 'landlord', 'booking'];
+    $joinConditions = [
+      'property.landlord = landlord.lid',
+      'property.pid = booking.property'
+    ];
+    $conditions = "booking.status = 0 and booking.tenant = $tid";
+    $rentals = $crud->leftOuterJoin($select,$tables,$joinConditions,$conditions);
+    
+    // $crud = new Crud();
+    // $tables = ['booking','landlord','property'];
+    // $joins = ["booking.landlord = landlord.lid","booking.property = property.pid"];
+    // $conditions = ["booking.status = 0","booking.tenant = $tid"];
+    // $selectColumns = ["property.rooms", "property.pid", "property.photo", "property.location", "property.description", "property.price", "landlord.lname", "landlord.lemail", "landlord.lphone","landlord.lid"];
+    // $rentals = $crud->multiJoinQuery($tables, $joins, $conditions,$selectColumns);
+
     // $table = "property";
     // $selectColumns = ["property.rooms", "property.pid", "property.photo", "property.location", "property.description", "property.price", "landlord.lname", "landlord.lemail", "landlord.lphone","landlord.lid"];
     // $joinTable = "landlord";
     // $joinCondition = "property.landlord = landlord.lid";
   
     // $rentals = $crud->selectJoin($table, $joinTable, $joinCondition, $selectColumns);
-
+if($rentals){
     while ($row = mysqli_fetch_assoc($rentals)) {
       $pid = $row["pid"];
       $photo = $row["photo"];
@@ -279,7 +290,10 @@ session_start();
         <div id="apply-form" class="apply-form">
         </div>
       </div>
-    <?php } ?>
+    <?php }}
+    else{
+     echo " <script>alert('No requests till now!')</script>";
+    } ?>
   </div>
 
 </div>

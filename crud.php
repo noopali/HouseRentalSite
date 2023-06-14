@@ -158,7 +158,6 @@ function multiJoinQuery($tables, $joins, $conditions,$selectColumns)
     }
     // Execute the query
     $statement = mysqli_query($this->con,$query);
-    
     return $statement;
 }
 function leftOuterJoin($select, $tables, $joinConditions, $conditions) {
@@ -177,15 +176,12 @@ function leftOuterJoin($select, $tables, $joinConditions, $conditions) {
     
     // // Perform the query
     $result = mysqli_query($this->con, $query);
-    
-    // // Handle query errors
-    // if (!$result) {
-    //   die("Query failed: " . mysqli_error($connection));
-    // }
-    
-    // // Close the database connection
-    // mysqli_close($connection);
-    return $result;
+    if($result && mysqli_num_rows($result) > 0){
+        return $result;
+    }
+   else{
+    return false;
+   }
   }
   
   
