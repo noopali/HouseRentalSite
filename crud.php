@@ -59,7 +59,6 @@ public function select($table,$column,$condition,$key,$value){ //selects specifi
 public function updateOne($table,$column,$updatedValue,$key,$operator,$value){
 
     $updateQuery = "update ".$table. " set ".$column." = " .$updatedValue." where ".$key.$operator.$value;
-
     $query = mysqli_query($this->con,$updateQuery);
     echo $updateQuery;
   
@@ -162,5 +161,33 @@ function multiJoinQuery($tables, $joins, $conditions,$selectColumns)
     
     return $statement;
 }
-
+function leftOuterJoin($select, $tables, $joinConditions, $conditions) {
+    // Construct the join clauses
+    $joinClauses = [];
+    $selectcols = implode(", ", $select);
+    foreach ($joinConditions as $key => $condition) {
+      $joinClauses[] = "LEFT OUTER JOIN {$tables[$key +1]} ON $condition";
+    }
+  
+    // Construct the WHERE clause
+    $whereClause = !empty($conditions) ? "WHERE $conditions" : "";
+  
+    // Construct the SQL query
+    $query = "SELECT $selectcols FROM $tables[0] " . implode(" ", $joinClauses) . " $whereClause";
+    
+    // // Perform the query
+    $result = mysqli_query($this->con, $query);
+    
+    // // Handle query errors
+    // if (!$result) {
+    //   die("Query failed: " . mysqli_error($connection));
+    // }
+    
+    // // Close the database connection
+    // mysqli_close($connection);
+    return $result;
+  }
+  
+  
 }
+

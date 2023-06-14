@@ -78,7 +78,7 @@ if (isset($_POST["login"])) {
 
                 } elseif ($role == "tenant") {
                     $_SESSION["temail"] = $row["temail"];
-                    $_SESSION["tusername"] = $row["tusername"];
+                    $_SESSION["tname"] = $row["tname"];
                     $_SESSION["tid"] = $row["tid"];
                     $_SESSION["role"] = $role;
                     header("location:tenant.view.php");

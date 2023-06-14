@@ -9,9 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
        
         $table = $_POST['table'];
         $bid = $_POST['bid'];
+        $pid = $_POST['pid'];
         $column = "status";
             $updatedValue = "1";
-        $crud->updateOne($table,$column,$updatedValue,"bid","=",$bid);
+        $crud->updateOne($table,$column,$updatedValue,"property","=",$pid);
+       
         }
     }
     else {

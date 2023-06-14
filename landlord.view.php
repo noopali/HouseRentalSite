@@ -282,9 +282,8 @@ height: 80px;
         $key = "landlord";
         $value = $_SESSION["lid"];
         $select = $crud->select($table, $column, $condition, $key, $value);//select column from table where key = value
-        $row = mysqli_fetch_assoc($select);
         $_SESSION['property'] = $select;
-        while ($row = mysqli_fetch_assoc($select)) {
+        while ($row = mysqli_fetch_array($select)) {
           $imgsource = $row["photo"];
           $price = $row["price"];
           $rooms = $row["rooms"];
@@ -306,11 +305,11 @@ height: 80px;
     </table>
   </div>
 
-  <div class="applicant-section">
+  <!-- <div class="applicant-section">
     <h2>Tenant Applications</h2>
     <div id="applicantCount">Number of Applicants: <span id="applicantCountValue">0</span></div>
     <ul id="applicantList"></ul>
-  </div>
+  </div> -->
   <script>
   // Function to open the rental form
 function openRentalForm() {

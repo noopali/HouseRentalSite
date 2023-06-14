@@ -281,7 +281,7 @@ $crud = new Crud();
             $row['tid'];
             $row['bid'];
             ?>
-          <td><button class="apply-button" onclick="showConfirm('<?php echo $row['bid'];?>','<?php echo $table; ?> ')">Approve</button></td>
+          <td><button class="apply-button" onclick="showConfirm('<?php echo $row['bid'];?>','<?php echo $table; ?>' ,'<?php echo $row['property'] ?>')">Approve</button></td>
            
            <?php
           }
@@ -293,7 +293,7 @@ $crud = new Crud();
     </table>
   </div>
   <script>
-    function showConfirm(bid,table) {
+    function showConfirm(bid,table,pid) {
 
       var message = "Are you sure you want to apporve the request?";
       var confirmBox = document.createElement("div");
@@ -328,7 +328,7 @@ $crud = new Crud();
           let req = new XMLHttpRequest();
           req.open('post', 'landlord.operations.php', true);
           req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-          req.send("bid=" + bid + "&table=" + table + "&action=approve");
+          req.send("bid=" + bid + "&table=" + table + "&action=approve&pid="+pid);
           req.onload = function () {
             alert("Request Accepted!"); 
             window.location.href = "landlord.mytenants.php";
