@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tid = $_POST['tid'];
     $pid = $_POST['pid'];
     $lid = $_POST['lid'];
-    $condition = "property = '{$pid}' and tenant = '{$tid}'";
+    $condition = "property = '{$pid}' and tenant = '{$tid}' and request = 1";
     $column = "request";
     $previousRequest = $crud->selectCondition($table, $column, $condition);
     $requestCount = mysqli_num_rows($previousRequest);
@@ -32,6 +32,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $response = array('message' => 'Request sent to tenant');
         echo json_encode($response);
     }
+}
+else if($_POST['action']=='cancel'){
+    $crud = new Crud();
+    $table = 'booking';
+    $bid = $_POST['bid'];
+    $column = 'request';
+    $updatedValue = '0';
+    $crud->updateOne($table,$column,$updatedValue,"bid","=",$bid);
+    $response = array('message' => 'cancelled sucessfully');
+    json_encode($response);
+
 }
 } else {
     $response = array( 'message' => 'Error');

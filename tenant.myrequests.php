@@ -219,14 +219,14 @@ session_start();
     require "crud.php";
     $crud = new Crud();
      $tid = $_SESSION['tid'];
-    $select = ["property.rooms", "property.pid", "property.photo", "property.location", "property.description", "property.price", "landlord.lname", "landlord.lemail", "landlord.lphone", "landlord.lid"]; 
+    $select = ["property.rooms", "property.pid", "property.photo", "property.location", "property.description", "property.price", "landlord.lname", "landlord.lemail", "landlord.lphone", "landlord.lid","booking.bid"]; 
     $tables = ['property', 'landlord', 'booking'];
     $joinConditions = [
       'property.landlord = landlord.lid',
       'property.pid = booking.property'
     ];
-    $conditions = "booking.status = 0 and booking.tenant = $tid";
-    $rentals = $crud->leftOuterJoin($select,$tables,$joinConditions,$conditions);
+    $conditions = ["booking.status = 0","booking.tenant = $tid","booking.request = 1"];
+    $rentals = $crud->multiJoinQuery($tables,$joinConditions,$conditions,$select);
     
     // $crud = new Crud();
     // $tables = ['booking','landlord','property'];
@@ -239,7 +239,6 @@ session_start();
     // $selectColumns = ["property.rooms", "property.pid", "property.photo", "property.location", "property.description", "property.price", "landlord.lname", "landlord.lemail", "landlord.lphone","landlord.lid"];
     // $joinTable = "landlord";
     // $joinCondition = "property.landlord = landlord.lid";
-  
     // $rentals = $crud->selectJoin($table, $joinTable, $joinCondition, $selectColumns);
 if($rentals){
     while ($row = mysqli_fetch_assoc($rentals)) {
@@ -253,6 +252,7 @@ if($rentals){
       $phone = $row["lphone"];
       $tid = $_SESSION["tid"];
       $lid = $row["lid"];
+       $bid = $row["bid"];
       ?>
       <?php 
   
@@ -263,8 +263,10 @@ if($rentals){
             <img src="<?php echo $photo; ?>" alt="Rent Image">
           </div>
           <div class="rent-info">
+           
             <h2>Rent
               <?php echo $pid; ?>
+              <?php echo $bid; ?>
             </h2>
             <p>Price: Rs.
               <?php echo " ".$row["price"]; ?>/month
@@ -281,14 +283,9 @@ if($rentals){
             <?php $lid ?>
           </div>
         </div>
-        <?php $table = "booking";
-              $tid = $_SESSION['tid'];     
+        <?php $table = "booking";  
         ?>
-        <button class="apply-button" onclick="showConfirm(<?php echo $pid; ?>,'<?php echo $tid;?>','<?php echo $lid;?>','<?php echo $table;?>')">Cancel</button>
-
-
-        <div id="apply-form" class="apply-form">
-        </div>
+        <button class="apply-button" onclick="showConfirm('<?php echo $bid; ?>')">Cancel</button>
       </div>
     <?php }}
     else{
@@ -299,7 +296,7 @@ if($rentals){
 </div>
   <script>
     
-    function showConfirm(pid, tid,lid,table) {
+    function showConfirm(bid) {
       
   var message = "Request for Rent?";
   var confirmBox = document.createElement("div");
@@ -336,7 +333,7 @@ if($rentals){
     let req=new XMLHttpRequest();
     req.open('post','tenant.operations.php',true);
     req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    req.send("pid="+pid+"&tid="+tid+"&table="+table+"&lid="+lid+"&table="+table+"&action=requestRent");
+    req.send("bid="+bid+"&table="+table+"&action=cancel");
     req.onload=function(){
     alert(this.responseText);
     }
