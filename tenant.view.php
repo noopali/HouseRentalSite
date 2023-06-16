@@ -252,7 +252,6 @@ session_start();
       $phone = $row["lphone"];
       $tid = $_SESSION["tid"];
       $lid = $row["lid"];
-
       ?>
       <?php
 
@@ -302,7 +301,6 @@ session_start();
   <script>
 
     function showConfirm(pid, tid, lid, table) {
-
       var message = "Request for Rent?";
       var confirmBox = document.createElement("div");
       confirmBox.classList.add('confirm-box');

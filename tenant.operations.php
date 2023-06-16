@@ -39,7 +39,7 @@ else if($_POST['action']=='cancel'){
     $bid = $_POST['bid'];
     $column = 'request';
     $updatedValue = '0';
-    $crud->updateOne($table,$column,$updatedValue,"bid","=",$bid);
+    $crud->delete($table,"bid",$bid);
     $response = array('message' => 'cancelled sucessfully');
     echo json_encode($response);
 
