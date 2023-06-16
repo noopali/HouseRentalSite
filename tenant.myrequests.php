@@ -252,7 +252,7 @@ if($rentals){
       $phone = $row["lphone"];
       $tid = $_SESSION["tid"];
       $lid = $row["lid"];
-       $bid = $row["bid"];
+      $bid = $row["bid"];
       ?>
       <?php 
   
@@ -266,7 +266,6 @@ if($rentals){
            
             <h2>Rent
               <?php echo $pid; ?>
-              <?php echo $bid; ?>
             </h2>
             <p>Price: Rs.
               <?php echo " ".$row["price"]; ?>/month
@@ -333,9 +332,10 @@ if($rentals){
     let req=new XMLHttpRequest();
     req.open('post','tenant.operations.php',true);
     req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    req.send("bid="+bid+"&table="+table+"&action=cancel");
-    req.onload=function(){
+    req.send("bid="+bid+"&action=cancel");
+    req.onload=function (){
     alert(this.responseText);
+    location.reload();
     }
   
    }

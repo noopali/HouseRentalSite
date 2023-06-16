@@ -227,13 +227,13 @@ session_start();
     <?php
     require "crud.php";
     $crud = new Crud();
-    $select = ["property.rooms", "property.pid", "property.photo", "property.location", "property.description", "property.price", "landlord.lname", "landlord.lemail", "landlord.lphone", "landlord.lid"]; 
+    $select = ["property.pid","property.rooms", "property.photo", "property.location", "property.description", "property.price", "landlord.lname", "landlord.lemail", "landlord.lphone", "landlord.lid"]; 
     $tables = ['property', 'landlord', 'booking'];
     $joinConditions = [
       'property.landlord = landlord.lid',
       'property.pid = booking.property'
     ];
-    $conditions = "booking.status = 0 or booking.bid IS NULL";
+    $conditions = "booking.status = 0 or booking.bid IS NULL group by property.pid";
     $rentals = $crud->leftOuterJoin($select,$tables,$joinConditions,$conditions);
     // $table = "property";
     // $selectColumns = ["property.rooms", "property.pid", "property.photo", "property.location", "property.description", "property.price", "landlord.lname", "landlord.lemail", "landlord.lphone","landlord.lid"];
