@@ -21,10 +21,12 @@ public function insert($table,$item_arr){
     $vals.=")";
 
     $insert = $statement.$cols.$vals;
+    echo $insert;
     //echo $insert;
     $query = mysqli_query($this->con,$insert);
    
     if ($query) echo "<br> inserted sucessfully";
+   
 
 }
 

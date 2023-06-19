@@ -297,7 +297,7 @@ height: 80px;
           echo "<td>";
           echo "<button>update</button>";
           echo "<a href='delete.php?table={$table}&key=pid&value={$pid}&action=delete'><button>delete</button></a>";
-          echo "  </td>";
+          echo "</td>";
           echo "</tr>"; 
         }
       ?>
@@ -311,6 +311,8 @@ height: 80px;
     <ul id="applicantList"></ul>
   </div> -->
   <script>
+
+    
   // Function to open the rental form
 function openRentalForm() {
   rentalFormPopup.style.display = 'block';

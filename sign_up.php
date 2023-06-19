@@ -3,7 +3,7 @@ include("sign_up.view.php");
 require "crud.php";
 $crud = new crud();
 
-$username = $_POST["username"];
+$firstname = $_POST["fname"];
 $role = $_POST["select"];
 $password = $_POST["password"];
 $rpassword = $_POST["rpassword"];

@@ -20,7 +20,7 @@ session_start();
     <ul class="navbar">
     <li><a href="tenant.view.php">Home</a></li>
       <li><a href="tenant.myrequests.php">My Requests</a></li>
-      <li><a href="about-us">My Bookings</a></li>
+      <li><a href="tenants.mybookings.php">My Bookings</a></li>
       <li><a href="reviews">My Profile</a></li>
     </ul>
     <div class="header-btn">

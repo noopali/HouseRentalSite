@@ -3,24 +3,30 @@ include("sign_up.view.php");
 require "crud.php";
 $crud = new crud();
 
-$username = $_POST["username"];
+$firstname = $_POST["firstname"];
+$lastname = $_POST["lastname"];
 $role = $_POST["select"];
 $password = $_POST["password"];
 $rpassword = $_POST["rpassword"];
 $email = $_POST["email"];
 $phone = $_POST["phone"];
 
+
 $table = $role;
 
 if (isset($_POST["signup"])) {
     $errors = array();
     // Validate username
-    if (empty($username)) {
-        $errors[] = "Username is required.";
-    } elseif (strlen($username) < 3) {
-        $errors[] = "Username should be at least 3 characters long.";
+    if (empty($firstname)) {
+        $errors[] = "First name is required.";
+    } elseif (strlen($firstname) < 3) {
+        $errors[] = "First name should be at least 3 characters long.";
     }
-
+    if (empty($lastname)) {
+        $errors[] = "Last name is required.";
+    } elseif (strlen($lastname) < 3) {
+        $errors[] = "Last name should be at least 3 characters long.";
+    }
     // Validate role
     $validRoles = array("tenant", "landlord","admin");
     if (empty($role)) {
@@ -64,7 +70,7 @@ if (isset($_POST["signup"])) {
     */else {
         if($role=="admin"){
             $userdetails = [
-                "aname" => $username,
+                "aname" => $firstname,
                 "apassword" => $password,
                 "aemail" => $email,
                 "aphone" => $phone
@@ -73,7 +79,8 @@ if (isset($_POST["signup"])) {
         }
         else if($role == "tenant"){
             $userdetails = [
-                "tname" => $username,
+                "tname" => $firstname,
+                "tlastname"=>$lastname,
                 "tpassword" => $password,
                 "temail" => $email,
                 "tphone" => $phone
@@ -82,7 +89,8 @@ if (isset($_POST["signup"])) {
         }
         else if($role == "landlord"){
             $userdetails = [
-                "lname" => $username,
+                "lname" => $firstname,
+                "llastname"=>$lastname,
                 "lpassword" => $password,
                 "lemail" => $email,
                 "lphone" => $phone
@@ -94,7 +102,8 @@ if (isset($_POST["signup"])) {
         $emailKey = array_keys($userdetails,$email);
         $phoneKey = array_keys($userdetails,$phone);
         $passwordKey = array_keys($userdetails,$password);
-        $nameKey =  array_keys($userdetails,$username);
+        // $firstNameKey =  array_keys($userdetails,$firstname);
+        // $lastNameKey =  array_keys($userdetails,$firstname);
 
         $emailResult = $crud->selectAll($table, "=",$emailKey[0], $email); // Parameters: {Tablename, operator, key, value}
         $phoneResult = $crud->selectAll($table, "=",$phoneKey[0], $phone);
@@ -119,12 +128,6 @@ if (isset($_POST["signup"])) {
                         $errorMessages[] = $error;
                     }
                 }
-                /*
-                if($crud->exists($table,"email",$email))
-                {
-                    $errorMessages[] = "Email already exists";
-                }
-                */
 
                 // If there are any errors, display them
                 if (!empty($errorMessages)) {

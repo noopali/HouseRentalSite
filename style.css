@@ -58,6 +58,7 @@ height: 80px;
   color: purple;
   font-weight: 500;
 }
+
 .navbar a::after{
   content: '';
   width: 0;

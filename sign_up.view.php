@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Sign Up</title>
   <link rel="stylesheet" type="text/css" href="">
   <style>
-    * {
+    /* * {
       box-sizing: border-box;
     }
-    
+
     body {
       background-image: url("login.jpg");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      min-height: 100vh; 
+      min-height: 100vh;
       overflow-y: scroll;
     }
-    
+
     .signup-container {
       width: 300px;
       margin: 100px auto;
       padding: 20px;
       background-color: #f2f2f2;
       border-radius: 5px;
+      margin-top: 50px;
     }
-    
+
     h2 {
       text-align: center;
     }
-    
+
     input[type="text"],
     input[type="password"],
     input[type="email"],
@@ -42,7 +44,7 @@
       border: 1px solid #ccc;
       border-radius: 4px;
     }
-    
+
     button[type="submit"] {
       width: 100%;
       padding: 10px;
@@ -52,20 +54,24 @@
       border-radius: 4px;
       cursor: pointer;
     }
+
     .error-message {
       color: red;
       font-size: 12px;
       margin-top: 5px;
-    }
-  
+    } */
   </style>
 </head>
+
 <body>
-<div class="signup-container">
+  <div class="signup-container">
     <h2>Sign Up</h2>
     <form id="signup-form" method="POST" action="signupcopy.php" onsubmit="return validateForm()">
-      <input type="text" id="username" placeholder="Username" required name="username">
-      <span id="username-error" class="error-message"></span>
+      <input type="text" id="firstname" placeholder="First Name" required name="firstname">
+      <span id="firstname-error" class="error-message"></span>
+      <input type="text" id="lastname" placeholder="Last Name" required name="lastname">
+      <span id="lastname-error" class="error-message"></span>
+
       <input type="password" id="password" placeholder="Password" required name="password">
       <span id="password-error" class="error-message"></span>
       <input type="password" id="repassword" placeholder="Retype Password" required name="rpassword">
@@ -74,7 +80,7 @@
       <span id="email-error" class="error-message"></span>
       <input type="tel" id="phone" placeholder="Phone Number" required name="phone">
       <span id="phone-error" class="error-message"></span>
-      <select id="role" name="select" required >
+      <select id="role" name="select" required>
         <option value="">Select Role</option>
         <option value="landlord">Landlord</option>
         <option value="tenant">Tenant</option>
@@ -85,11 +91,12 @@
   </div>
   <script>
     function validateForm() {
-       // Clear previous error messages
-       clearErrorMessages();
+      // Clear previous error messages
+      clearErrorMessages();
 
       // Get form inputs
-      var username = document.getElementById('username').value;
+      var firstname = document.getElementById('firstname').value;
+      var lastname = document.getElementById('lastname').value;
       var password = document.getElementById('password').value;
       var repassword = document.getElementById('repassword').value;
       var email = document.getElementById('email').value;
@@ -108,11 +115,15 @@
       // Phone number validation regex pattern
       var phonePattern = /^\d{10}$/;
 
-     
+
       // Validation checks
       var isValid = true;
-      if (!usernamePattern.test(username)) {
-        displayErrorMessage('username', 'Username must start with an uppercase letter');
+      if (!usernamePattern.test(firstname)) {
+        displayErrorMessage('firstname', 'First name must start with an uppercase letter');
+        isValid = false;
+      }
+      if (!usernamePattern.test(lastname)) {
+        displayErrorMessage('lastname', 'Last name must start with an uppercase letter');
         isValid = false;
       }
       if (password.length < 6) {
@@ -154,7 +165,8 @@
         errorElements[i].textContent = '';
       }
     }
-    
+
   </script>
 </body>
+
 </html>
