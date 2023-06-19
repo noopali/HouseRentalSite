@@ -232,7 +232,7 @@ h1{
     <h1>Welcome, <?php echo $_SESSION["aname"];?></h1>
     
     
-   </div>
+   </div> 
   <div class="rental-list">
     <h2>My Rentals</h2>
     <table id="rentalTable">

@@ -64,6 +64,7 @@ if (isset($_POST["login"])) {
             } else if ($role == "admin") {
                 $dbEmail = $row["aemail"];
                 $dbPassword = $row["apassword"];
+                $_SESSION["verified"] =$row["verified"];
             }
 
             if (password_verify($password, $dbPassword)) {
@@ -73,6 +74,7 @@ if (isset($_POST["login"])) {
                     $_SESSION["lname"] = $row["lname"];
                     $_SESSION["lid"] = $row["lid"];
                     $_SESSION["role"] = $role;
+                    $_SESSION["verified"] =$row["verified"];
 
                     header("location:landlord.view.php");
 
@@ -81,6 +83,7 @@ if (isset($_POST["login"])) {
                     $_SESSION["tname"] = $row["tname"];
                     $_SESSION["tid"] = $row["tid"];
                     $_SESSION["role"] = $role;
+                    $_SESSION["verified"] =$row["verified"];
                     header("location:tenant.view.php");
                 } else {
                     echo "<script>alert('Unknown Error');</script>";

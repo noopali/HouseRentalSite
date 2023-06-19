@@ -221,13 +221,16 @@ session_start();
       <input type="text" id="address-input" placeholder="Enter address" required>
       <button type="submit">Go</button>
     </form>
+    <div class="verify">
+      but
+    </div>
   </div>
 
   <div class="rents-container">
     <?php
     require "crud.php";
     $crud = new Crud();
-    $select = ["property.pid","property.rooms", "property.photo", "property.location", "property.description", "property.price", "landlord.lname", "landlord.lemail", "landlord.lphone", "landlord.lid"]; 
+    $select = ["property.pid","property.rooms", "property.photo", "property.location", "property.description", "property.price", "landlord.lname", "landlord.lemail", "landlord.lphone", "landlord.lid",]; 
     $tables = ['property', 'landlord', 'booking'];
     $joinConditions = [
       'property.landlord = landlord.lid',
@@ -252,9 +255,6 @@ session_start();
       $phone = $row["lphone"];
       $tid = $_SESSION["tid"];
       $lid = $row["lid"];
-      ?>
-      <?php
-
       ?>
       <div class="rent-card">
         <div class="rent-details">
@@ -282,16 +282,21 @@ session_start();
         </div>
         <?php $table = "booking";
         $tid = $_SESSION['tid'];
-
+        $verified = $_SESSION["verified"];
+      
         ?>
+
         <button class="apply-button"
-          onclick="showConfirm('<?php echo $pid; ?>','<?php echo $tid; ?>','<?php echo $lid; ?>','<?php echo $table; ?>')">Apply</button>
+          onclick="showConfirm('<?php echo $pid; ?>','<?php echo $tid; ?>','<?php echo $lid; ?>','<?php echo $table; ?>','<?php echo $verified;?>')">Apply</button>
 
 
         <div id="apply-form" class="apply-form">
         </div>
       </div>
-    <?php }} 
+      
+    <?php 
+        }
+    } 
     else{
       echo "<script>alert('No Rooms available for rents!')</script>";
     }?>
@@ -300,7 +305,12 @@ session_start();
   </div>
   <script>
 
-    function showConfirm(pid, tid, lid, table) {
+    function showConfirm(pid, tid, lid, table, verified) {
+
+      if(verified == 0){
+        alert("verify your personal information via KYC form first!")
+      }
+      else{
       var message = "Request for Rent?";
       var confirmBox = document.createElement("div");
       confirmBox.classList.add('confirm-box');
@@ -349,7 +359,8 @@ session_start();
 
       noButton.addEventListener('click', function () {
         confirmBox.style.display = "none";
-      })
+      });
+    }
     }
 
 

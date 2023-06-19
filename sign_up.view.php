@@ -6,7 +6,7 @@
   <title>Sign Up</title>
   <link rel="stylesheet" type="text/css" href="">
   <style>
-    /* * {
+    * {
       box-sizing: border-box;
     }
 
@@ -59,7 +59,7 @@
       color: red;
       font-size: 12px;
       margin-top: 5px;
-    } */
+    }
   </style>
 </head>
 
@@ -79,6 +79,9 @@
       <input type="email" id="email" placeholder="Email" required name="email">
       <span id="email-error" class="error-message"></span>
       <input type="tel" id="phone" placeholder="Phone Number" required name="phone">
+      <!-- <input type="text" id="address" placeholder="Address" required name="lastname">
+      <span id="address-error" class="error-message"></span> -->
+
       <span id="phone-error" class="error-message"></span>
       <select id="role" name="select" required>
         <option value="">Select Role</option>
