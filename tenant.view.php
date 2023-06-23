@@ -20,8 +20,8 @@ session_start();
     <ul class="navbar">
     <li><a href="tenant.view.php">Home</a></li>
       <li><a href="tenant.myrequests.php">My Requests</a></li>
-      <li><a href="tenants.mybookings.php">My Bookings</a></li>
-      <li><a href="reviews">My Profile</a></li>
+      <li><a href="tenant.mybookings.php">My Bookings</a></li>
+      <li><a href="tenant.profile.php">My Profile</a></li>
     </ul>
     <div class="header-btn">
       <a href="logout.php" class="log-in">Log out</a>
@@ -213,6 +213,40 @@ session_start();
     .no-button {
       background-color: red;
     }
+    .verify{
+      margin-top: 40px;
+    }
+/* css for verification form */
+    .addrental{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.addrental>button{
+  height: 40px;
+  width: 100px;
+  margin: 30px;
+}
+.rental-form-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  overflow: auto;
+}
+
+.rental-form-container {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  max-width: 500px;
+} 
+
   </style>
   <div class="search-section">
     <h1>Welcome <?php echo $_SESSION['tname']?></h1>
@@ -221,11 +255,20 @@ session_start();
       <input type="text" id="address-input" placeholder="Enter address" required>
       <button type="submit">Go</button>
     </form>
-    <div class="verify">
-      but
+    <!-- <div class="verify">
+      <button id="verify-btn"> User Verification</button>
+    </div> -->
+  </div>
+  <div class="rental-form-popup" id="rentalFormPopup">
+    <div class="rental-form-container">
+      <h2>Verify yourself</h2>
+      <form id="rentalForm" action="landlord.php" method="post" enctype="multipart/form-data">
+        <input type="file" id="photoInput" name="photo" accept=" image/jpeg, image/png, image/jpg "required>
+        <button type="submit" id="rentalFormSubmit" name="submit">Rent Now</button>
+        <button type="button" id="closePopupButton" >Close</button>
+      </form>
     </div>
   </div>
-
   <div class="rents-container">
     <?php
     require "crud.php";
@@ -287,7 +330,7 @@ session_start();
         ?>
 
         <button class="apply-button"
-          onclick="showConfirm('<?php echo $pid; ?>','<?php echo $tid; ?>','<?php echo $lid; ?>','<?php echo $table; ?>','<?php echo $verified;?>')">Apply</button>
+          onclick="showConfirm('<?php echo $pid; ?>','<?php echo $tid; ?>','<?php echo $lid; ?>','<?php echo $table; ?>','<?php echo 1;?>')">Apply</button>
 
 
         <div id="apply-form" class="apply-form">
@@ -300,11 +343,23 @@ session_start();
     else{
       echo "<script>alert('No Rooms available for rents!')</script>";
     }?>
+    
   </div>
 
   </div>
   <script>
+    function openRentalForm() {
+  rentalFormPopup.style.display = 'block';
+}
 
+// Function to close the rental form
+function closeRentalForm() {
+  rentalFormPopup.style.display = 'none';
+  rentalForm.reset();
+  rentalForm.dataset.mode = 'add';
+  rentalForm.dataset.rentalId = '';
+  document.getElementById('rentalFormSubmit').textContent = 'Rent Now';
+}
     function showConfirm(pid, tid, lid, table, verified) {
 
       if(verified == 0){
@@ -363,6 +418,11 @@ session_start();
     }
     }
 
+    // Add event listener to the rental form button
+document.getElementById('verify-btn').addEventListener('click', openRentalForm);
+
+// Add event listener to the close popup button
+document.getElementById('closePopupButton').addEventListener('click', closeRentalForm);
 
   </script>
 </body>

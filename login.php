@@ -71,19 +71,26 @@ if (isset($_POST["login"])) {
 
                 if ($role == "landlord") {
                     $_SESSION["lemail"] = $row["lemail"];
+                    $_SESSION["lastname"] = $row["llastname"];
                     $_SESSION["lname"] = $row["lname"];
                     $_SESSION["lid"] = $row["lid"];
                     $_SESSION["role"] = $role;
                     $_SESSION["verified"] =$row["verified"];
+                    $_SESSION["lphone"] = $row["lphone"];
+                    $_SESSION["laddress"] = $row["laddress"];
+                    
 
                     header("location:landlord.view.php");
 
                 } elseif ($role == "tenant") {
                     $_SESSION["temail"] = $row["temail"];
                     $_SESSION["tname"] = $row["tname"];
+                    $_SESSION["lastname"] = $row["tlastname"];
                     $_SESSION["tid"] = $row["tid"];
                     $_SESSION["role"] = $role;
                     $_SESSION["verified"] =$row["verified"];
+                    $_SESSION["tphone"] = $row["tphone"];
+                    $_SESSION["taddress"] = $row["taddress"];
                     header("location:tenant.view.php");
                 } else {
                     echo "<script>alert('Unknown Error');</script>";

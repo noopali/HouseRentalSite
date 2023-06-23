@@ -21,13 +21,7 @@ public function insert($table,$item_arr){
     $vals.=")";
 
     $insert = $statement.$cols.$vals;
-    echo $insert;
-    //echo $insert;
     $query = mysqli_query($this->con,$insert);
-   
-    if ($query) echo "<br> inserted sucessfully";
-   
-
 }
 
 public function selectNoCondition($table){
@@ -79,7 +73,6 @@ public function updateAll($table,$update_arr,$key,$value){
   
     }
     $update .="where {$key} = '{$value}'";
-    echo $update;
   $query = mysqli_query($this->con,$update);
 }
 

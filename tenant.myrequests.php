@@ -21,7 +21,7 @@ session_start();
       <li><a href="tenant.view.php">Home</a></li>
       <li><a href="tenant.myrequests.php">My Requests</a></li>
       <li><a href="tenant.mybookings.php">My Bookings</a></li>
-      <li><a href="reviews">My Profile</a></li>
+      <li><a href="tenant.profile.php">My Profile</a></li>
     </ul>
     <div class="header-btn">
       <a href="logout.php" class="log-in">Log out</a>
@@ -227,6 +227,7 @@ session_start();
     ];
     $conditions = ["booking.status = 0","booking.tenant = $tid","booking.request = 1"];
     $rentals = $crud->multiJoinQuery($tables,$joinConditions,$conditions,$select);
+    
     
     // $crud = new Crud();
     // $tables = ['booking','landlord','property'];

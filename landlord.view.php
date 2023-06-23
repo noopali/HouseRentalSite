@@ -43,14 +43,14 @@ $crud = new Crud();
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.rental-form-container {
+/* .rental-form-container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
   padding: 20px;
-}
+} */
 
 body {
   font-family: Arial, sans-serif;
@@ -80,9 +80,19 @@ body {
   background-color: #fefefe;
   margin: 10% auto;
   padding: 20px;
-  max-width: 500px;
+  max-width: 400px;
+  height: 300px;
 }
-
+.rentalformDiv{
+  display: flex;
+flex-direction: column;
+align-items: ;
+justify-content: flex-start;
+}
+.rentalformDiv input{
+  display:inline-block;
+  
+}
 .rental-list {
   margin-top: 30px;
 }
@@ -213,7 +223,7 @@ height: 80px;
 
 .addrental{
   display: flex;
-  align-items: center;
+  align-items: normal;
   justify-content: center;
 
 }
@@ -221,6 +231,11 @@ height: 80px;
   height: 40px;
   width: 100px;
   margin: 30px;
+}
+.delete-btn{
+  display: inline-block;
+  height: 40px;
+  width: 80px;
 }
   </style>
 </head>
@@ -233,6 +248,7 @@ height: 80px;
       <li><a href="landlord.view.php">Home</a></li>
       <li><a href="landlord.requests.php">Rental Requests</a></li>
       <li><a href="landlord.mytenants.php">My Tenants</a></li>
+      <li><a href="landlord.profile.php">My Profile</a></li>
         </ul>
     <div class="header-btn">
       <a href="logout.php" class="log-in">Log out</a>
@@ -249,8 +265,10 @@ height: 80px;
 
   <div class="rental-form-popup" id="rentalFormPopup">
     <div class="rental-form-container">
-      <h2>Add Rental</h2>
+      <h1>Hello</h1>
       <form id="rentalForm" action="landlord.php" method="post" enctype="multipart/form-data">
+      <h2>Add Rental</h2>
+      <div class="rentalformDiv">
         <input type="text" id="locationInput" placeholder="Location" name="location" required>
         <input type="file" id="photoInput" name="photo" accept=" image/jpeg, image/png, image/jpg "required>
         <input type="number" id="priceInput" placeholder="Price" name="price" required>
@@ -258,6 +276,7 @@ height: 80px;
         <textarea id="descriptionInput" placeholder="Description" name="description" required></textarea>
         <button type="submit" id="rentalFormSubmit" name="submit">Rent Now</button>
         <button type="button" id="closePopupButton" >Close</button>
+        </div>
       </form>
     </div>
   </div>
@@ -295,8 +314,7 @@ height: 80px;
           echo "<td>{$location}</td>";
           echo "<td>{$rooms}</td>";
           echo "<td>";
-          echo "<button>update</button>";
-          echo "<a href='delete.php?table={$table}&key=pid&value={$pid}&action=delete'><button>delete</button></a>";
+          echo "<a href='delete.php?table={$table}&key=pid&value={$pid}&action=delete' ><button class = 'delete-btn'>delete</button></a>";
           echo "</td>";
           echo "</tr>"; 
         }
@@ -332,6 +350,9 @@ document.getElementById('rentalFormButton').addEventListener('click', openRental
 
 // Add event listener to the close popup button
 document.getElementById('closePopupButton').addEventListener('click', closeRentalForm);
+
+
+
 
 
   </script>

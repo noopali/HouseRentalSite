@@ -10,6 +10,7 @@ $password = $_POST["password"];
 $rpassword = $_POST["rpassword"];
 $email = $_POST["email"];
 $phone = $_POST["phone"];
+$address = $_POST["address"];
 
 
 $table = $role;
@@ -83,7 +84,8 @@ if (isset($_POST["signup"])) {
                 "tlastname"=>$lastname,
                 "tpassword" => $password,
                 "temail" => $email,
-                "tphone" => $phone
+                "tphone" => $phone,
+                "taddress"=>$address
             ];
 
         }
@@ -93,7 +95,8 @@ if (isset($_POST["signup"])) {
                 "llastname"=>$lastname,
                 "lpassword" => $password,
                 "lemail" => $email,
-                "lphone" => $phone
+                "lphone" => $phone,
+                "laddress"=>$address
             ];
         }
         else{

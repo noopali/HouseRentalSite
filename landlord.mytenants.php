@@ -241,6 +241,7 @@ $crud = new Crud();
       <li><a href="landlord.view.php">Home</a></li>
       <li><a href="landlord.requests.php">Rental Requests</a></li>
       <li><a href="landlord.mytenants.php">My Tenants</a></li>
+      <li><a href="landlord.profile.php">My Profile</a></li>
     </ul>
     <div class="header-btn">
       <a href="logout.php" class="log-in">Log out</a>
@@ -255,6 +256,7 @@ $crud = new Crud();
           <th>Tenant Name</th>
           <th>Phone</th>
           <th>property id</th>
+          <th>Address</th>
         </tr>
       </thead>
       <tbody id="rentalTableBody">
@@ -262,7 +264,7 @@ $crud = new Crud();
         $propertySelect = $_SESSION['property'];
         $table = "booking";
         $lid = $_SESSION['lid'];
-        $selectColumns = ["booking.bid,tenant.tname","tenant.tid", "tenant.tphone", "booking.property"];
+        $selectColumns = ["booking.bid,tenant.tname","tenant.tid", "tenant.tphone", "booking.property","tenant.taddress"];
         $joinCondition = "booking.tenant = tenant.tid";
         $condition = "booking.landlord = '{$lid}' and booking.request = '1' and booking.status = '1 '";
         $select = $crud->selectJoinCondition($table, "tenant", $joinCondition, $condition, $selectColumns);
@@ -273,6 +275,7 @@ $crud = new Crud();
             echo "<td>" . $row["tname"] . "</td>";
             echo "<td>" . $row["tphone"] . "</td>";
             echo "<td>" . $row["property"] . "</td>";
+            echo "<td>" .$row["taddress"]. "</td>";
             $row['tid'];
             $row['bid'];
           }

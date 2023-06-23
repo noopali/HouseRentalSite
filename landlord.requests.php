@@ -243,6 +243,7 @@ $crud = new Crud();
       <li><a href="landlord.requests.php">Rental Requests</a></li>
       <!-- <li><a href="landlord.mytenants.php">My Tenants</a></li> -->
       <li><a href="landlord.mytenants.php">My Tenants</a></li>
+      <li><a href="landlord.profile.php">My Profile</a></li>
     </ul>
     <div class="header-btn">
       <a href="logout.php" class="log-in">Log out</a>
