@@ -258,6 +258,8 @@ $crud = new Crud();
           <th>Tenant Name</th>
           <th>Phone</th>
           <th>property id</th>
+          <th>From</th>
+          <th>To</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -266,7 +268,7 @@ $crud = new Crud();
         $propertySelect = $_SESSION['property'];
         $table = "booking";
         $lid = $_SESSION['lid'];
-        $selectColumns = ["booking.bid,tenant.tname","tenant.tid", "tenant.tphone", "booking.property"];
+        $selectColumns = ["booking.bid,tenant.tname","tenant.tid", "tenant.tphone", "booking.property","booking.start","booking.end"];
         $joinCondition = "booking.tenant = tenant.tid";
         $condition = "booking.landlord = '{$lid}' and booking.request = '1' and booking.status = '0 '";
         $select = $crud->selectJoinCondition($table, "tenant", $joinCondition, $condition, $selectColumns);
@@ -278,6 +280,9 @@ $crud = new Crud();
             <td> <?php echo $row["tname"] ?> </td>
             <td> <?php echo $row["tphone"] ?> </td>
             <td> <?php echo $row["property"] ?> </td>
+            <td><?php echo $row["start"]?></td>
+            <td><?php echo $row["end"]?></td>
+
             <?php
             $row['tid'];
             $row['bid'];

@@ -237,13 +237,57 @@ height: 80px;
   height: 40px;
   width: 80px;
 }
+/* .verify-form{
+    display: none;
+    
+  }
+  #verify-button{
+    display: inline-block;
+    margin: 0px auto;
+  }
+  .verify-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .verify-alert {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+  }
+
+  .verify-alert h2 {
+    margin-top: 0;
+  }
+
+  .verify-alert input[type="file"] {
+    margin-bottom: 10px;
+  }
+
+  .verify-alert button {
+    margin-top: 10px;
+  }
+  #verify-btn{
+    margin-top: 100px;
+    
+  } */
+
   </style>
 </head>
 <script src ="jquery.js"></script>
 
 <body>
 <header>
-    <a href="#" class="logo"><img src="logo.png" alt=""></a>
+
+    <a href="#" class="logo"><img src="logo.png" alt=""></a> 
     <ul class="navbar">
       <li><a href="landlord.view.php">Home</a></li>
       <li><a href="landlord.requests.php">Rental Requests</a></li>
@@ -255,8 +299,24 @@ height: 80px;
     </div>
   </header>
     <h1>Welcome, <?php echo $_SESSION["lname"];?></h1>
-    
-    
+  
+    <?php
+    $email = $_SESSION['lemail'];
+    $verified = $_SESSION["verified"];
+    $select = $crud->selectAll("landlord","=","lemail",$email);
+   $landlord = mysqli_fetch_assoc($select);
+   $verified = $landlord["verified"];
+   $request = $landlord["request"];
+
+  //  if($verified==0 && $request==0){
+  //     echo "<script>alert('Verify Your Identity to add rentals');</script>";
+  //     echo "<button id='verify-btn'> Verify Your Identity</button>";
+  //   }
+  //   else if($request ===1 && $verified ==0){
+      
+  //     echo "<script>alert('Your Verification is pending')</script>";
+  //   }
+    ?>
    </div>
    <div class="addrental">
    <button id="rentalFormButton">Add Rental</button>

@@ -90,6 +90,7 @@
       </select>
       <span id="role-error" class="error-message"></span>
       <button type="submit" name="signup">Sign Up</button>
+      <a href="login.view.php">Account exists? Login</a>
     </form>
   </div>
   <script>

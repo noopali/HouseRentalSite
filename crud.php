@@ -59,6 +59,40 @@ public function updateOne($table,$column,$updatedValue,$key,$operator,$value){
     echo $updateQuery;
   
 }
+public function updateMultiple($table, $update_arr, $key, $operator, $value) {
+    $updateQuery = "UPDATE `$table` SET ";
+    $count = count($update_arr);
+    $i = 0;
+
+    foreach ($update_arr as $column => $updatedValue) {
+        // Escape the values to prevent SQL injection
+        $column = mysqli_real_escape_string($this->con, $column);
+        $updatedValue = mysqli_real_escape_string($this->con, $updatedValue);
+
+        // Enclose the string values in single quotes in the SQL query
+        $updatedValue = "'" . $updatedValue . "'";
+
+        $updateQuery .= "`$column` = $updatedValue";
+
+        if ($i < $count - 1) {
+            $updateQuery .= ",";
+        }
+        $i++;
+    }
+
+    // Add the WHERE clause to the query
+    $key = mysqli_real_escape_string($this->con, $key);
+    $value = mysqli_real_escape_string($this->con, $value);
+    $value = "'" . $value . "'";
+    $updateQuery .= " WHERE `$key` $operator $value";
+
+    // Print the generated query for debugging purposes
+    echo $updateQuery;
+
+    $query = mysqli_query($this->con, $updateQuery);
+
+    // Add error handling here if needed
+}
 public function updateAll($table,$update_arr,$key,$value){  
 
     $update = "update ".$table. " set ";

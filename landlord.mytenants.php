@@ -9,7 +9,6 @@ $crud = new Crud();
 
 <head>
   <title>Landlord Page</title>
-  <link rel="stylesheet" href="">
   <style>
     .rental-list img {
       max-width: 100px;
@@ -232,7 +231,9 @@ $crud = new Crud();
       background-color: red;
     }
   </style>
+
 </head>
+
 <script src="jquery.js"></script>
 <body>
   <header>
@@ -248,7 +249,14 @@ $crud = new Crud();
     </div>
   </header>
   <h1 class="Requests heading">My Tenants</h1>
-
+<?php
+$propertySelect = $_SESSION['property'];
+        $table = "booking";
+        $lid = $_SESSION['lid'];
+        $selectColumns = ["booking.bid,tenant.tname","tenant.tid", "tenant.tphone", "booking.property","tenant.taddress","booking.start","booking.end",];
+        $joinCondition = "booking.tenant = tenant.tid";
+        $condition = "booking.landlord = '{$lid}' and booking.request = '1' and booking.status = '1 '";
+        $select = $crud->selectJoinCondition($table, "tenant", $joinCondition, $condition, $selectColumns);?>
   <div class="rental-list">
     <table id="rentalTable">
       <thead>
@@ -257,17 +265,13 @@ $crud = new Crud();
           <th>Phone</th>
           <th>property id</th>
           <th>Address</th>
+          <th>from</th>
+          <th>to</th>
         </tr>
       </thead>
       <tbody id="rentalTableBody">
         <?php
-        $propertySelect = $_SESSION['property'];
-        $table = "booking";
-        $lid = $_SESSION['lid'];
-        $selectColumns = ["booking.bid,tenant.tname","tenant.tid", "tenant.tphone", "booking.property","tenant.taddress"];
-        $joinCondition = "booking.tenant = tenant.tid";
-        $condition = "booking.landlord = '{$lid}' and booking.request = '1' and booking.status = '1 '";
-        $select = $crud->selectJoinCondition($table, "tenant", $joinCondition, $condition, $selectColumns);
+        
 
         if ($select) {
           while ($row = mysqli_fetch_assoc($select)) {
@@ -276,6 +280,9 @@ $crud = new Crud();
             echo "<td>" . $row["tphone"] . "</td>";
             echo "<td>" . $row["property"] . "</td>";
             echo "<td>" .$row["taddress"]. "</td>";
+            echo "<td>" . $row["start"] . "</td>";
+            echo "<td>" .$row["end"]. "</td>";
+           
             $row['tid'];
             $row['bid'];
           }

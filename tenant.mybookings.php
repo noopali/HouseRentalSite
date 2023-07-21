@@ -205,6 +205,7 @@ session_start();
       background-color: red;
     }
     
+    
   </style>
   <div class="search-section">
     <h1>Search by Location</h1>
@@ -227,7 +228,6 @@ session_start();
     ];
     $conditions = ["booking.status = 1","booking.tenant = $tid","booking.request = 1"];
     $rentals = $crud->multiJoinQuery($tables,$joinConditions,$conditions,$select);
-    
     // $crud = new Crud();
     // $tables = ['booking','landlord','property'];
     // $joins = ["booking.landlord = landlord.lid","booking.property = property.pid"];
@@ -297,7 +297,7 @@ if($rentals){
     
     function showConfirm(bid) {
       
-  var message = "Request for Rent?";
+  var message = "Cancel Rent?";
   var confirmBox = document.createElement("div");
   confirmBox.classList.add('confirm-box');
 

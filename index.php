@@ -10,9 +10,9 @@
     <header>
         <a href="#" class="logo"><img src="logo.png" alt=""></a>
         <ul class="navbar">
-    <li><a href="index.php">Home</a></li> 
-    <li><a href="about-us">About Us</a></li>
-    <li><a href="reviews">Reviews</a></li>
+    <!-- <li><a href="index.php">Home</a></li> 
+    <li><a href="about-us">landlord</a></li>
+    <li><a href="reviews">Tenant</a></li> -->
 </ul>
 <div class="header-btn">
     <a href="sign_up.view.php" class="sign-up">Sign Up</a>
@@ -24,50 +24,6 @@
 <!---- CSS styles ---->
 
 <style>
-.search-section {
-    background-image: url('background.jpg');
-    background-size: cover;
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px; /* Add margin-top to create space below the navbar */
-  }
-  
-  .search-section h1 {
-    color: #fff;
-    font-size: 40px;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .search-section form {
-    display: flex;
-    align-items: center;
-  }
-  
-  .search-section input[type="text"] {
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    margin-right: 10px;
-  }
-  
-  .search-section button {
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #fff;
-    background-color: purple;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .search-section button:hover {
-    background-color: blue;
-  }
 /* CSS styles */
 body {
   margin: 0;
@@ -166,11 +122,6 @@ body {
  <!------Here is the body of homepage---->
 
   <div class="search-section">
-    <h1>Search by Location</h1>
-    <form id="search-form" onsubmit="searchByLocation(event)">
-      <input type="text" id="address-input" placeholder="Enter address" required>
-      <button type="submit">Go</button>
-    </form>
   </div>
   
   <div class="rents-container">
@@ -185,16 +136,13 @@ body {
           <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
       </div>
-      <button class="apply-button" onclick="showApplyForm(1)">Apply</button>
+     
+      <a href="sign_up.view.php">
+      <button class="apply-button" onclick="">Apply</button>
+      </a>
       <div id="apply-form-1" class="apply-form">
         <h3>Apply for Rent 1</h3>
-        <form>
-          <input type="text" placeholder="Name" required>
-          <input type="email" placeholder="Email" required>
-          <input type="tel" placeholder="Phone Number" required>
-          <textarea placeholder="Description" required></textarea>
-          <button type="submit">Submit</button>
-        </form>
+       
       </div>
     </div>
   
@@ -209,17 +157,11 @@ body {
           <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
       </div>
-      <button class="apply-button" onclick="showApplyForm(2)">Apply</button>
-      <div id="apply-form-2" class="apply-form">
-        <h3>Apply for Rent 2</h3>
-        <form>
-          <input type="text" placeholder="Name" required>
-          <input type="email" placeholder="Email" required>
-          <input type="tel" placeholder="Phone Number" required>
-          <textarea placeholder="Description" required></textarea>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+      
+      <a href="sign_up.view.php">
+      <button class="apply-button" >Apply</button>
+      </a>
+     
     </div>
     
     <!-- Add more rent cards as needed -->
@@ -241,25 +183,6 @@ function showApplyForm(rentId) {
   }
 }
 
-function searchByLocation(event) {
-  event.preventDefault();
-  
-  // Get the address input value
-  var addressInput = document.getElementById("address-input");
-  var address = addressInput.value;
-  
-  // Perform search logic
-  // ...
-  // Add your search logic here, such as making API requests or filtering the rent data based on the address input
-  
-  // Clear the rent cards container
-  var rentsContainer = document.querySelector(".rents-container");
-  rentsContainer.innerHTML = "";
-  
-  // Add the search results or rent cards dynamically
-  // ...
-  // Add your code to dynamically generate and append the rent cards based on the search results or filtered data
-}
 
   </script>
 </body>

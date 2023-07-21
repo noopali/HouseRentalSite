@@ -91,6 +91,7 @@ if (isset($_POST["login"])) {
                     $_SESSION["verified"] =$row["verified"];
                     $_SESSION["tphone"] = $row["tphone"];
                     $_SESSION["taddress"] = $row["taddress"];
+                    $_SESSION["request"] = $row["request"];
                     header("location:tenant.view.php");
                 } else {
                     echo "<script>alert('Unknown Error');</script>";
