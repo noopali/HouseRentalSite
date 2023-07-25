@@ -202,9 +202,11 @@
     display: none;
     
   }
-  #verify-button{
+  #verify-btn{
     display: inline-block;
     margin: 0px auto;
+    height: 90px;
+    width: 180px;
   }
   .verify-overlay {
     position: fixed;
@@ -247,7 +249,8 @@
           $verified = $_SESSION["verified"];
           $select = $crud->selectAll("tenant","=","temail",$email);
          $tenant = mysqli_fetch_assoc($select);
-        //   $firstName = $tenant["tname"];
+         $verified = $tenant["verified"];
+        //   $verified==0 && $trequest == 0
         //   $lastName = $tenant["tlastname"];
         //  $temail =  $tenant["temail"];
         //   $tphone = $tenant["tphone"];
@@ -255,21 +258,21 @@
         
           $trequest = $tenant["request"];
           // echo "<script>alert('{$trequest}');</script>";
-        if($verified==0){
-          if($trequest == 0){
+        if($verified==0 && $trequest == 0){
+       
             echo "<script>alert('Verify Your Identity to rent the rooms');</script>";
             echo "<button id='verify-btn'> Verify Your Identity</button>";
           }
-          else{
+          else if ($verified==0 && $trequest == 1){
             echo "<script>alert('Your Verification is pending')</script>";
           }
           
           
-        }
+
           ?>
         
       </div> 
-    < <div class="verify-overlay" style="display: none;">
+       <div class="verify-overlay" style="display: none;">
     <div class="verify-alert">
       <h2>Verify yourself</h2>
       <form id="rentalForm"  method="post" enctype="multipart/form-data" action = "tenant.operations.php">

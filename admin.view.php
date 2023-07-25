@@ -234,7 +234,7 @@ height: 80px;
     <ul class="navbar">
       <li><a href="admin.tenantreq.php">Tenant Requests</a></li>
       <li><a href="admin.landlordreq.php">Landlord Requests</a></li>
-      <li><a href="admin.view.php">Tenant Management</a></li>
+      <li><a href="admin.tenantmgmt.php">Tenant Management</a></li>
       <li><a href="admin.view.php">Landlord Management</a></li>
       <li><a href="admin.property.php">Property Management</a></li>
         </ul>

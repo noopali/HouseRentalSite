@@ -1,7 +1,6 @@
 <?php
 session_start();
 require "crud.php";
-var_dump($_POST);
 // Check if the request method is POST
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
     if($_POST['action']=="requestRent"){
