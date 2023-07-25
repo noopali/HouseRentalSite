@@ -207,11 +207,7 @@ session_start();
     
   </style>
   <div class="search-section">
-    <h1>Search by Location</h1>
-    <form id="search-form" onsubmit="searchByLocation(event)">
-      <input type="text" id="address-input" placeholder="Enter address" required>
-      <button type="submit">Go</button>
-    </form>
+    <h1>My Requests</h1>
   </div>
 
   <div class="rents-container">
@@ -227,21 +223,11 @@ session_start();
     ];
     $conditions = ["booking.status = 0","booking.tenant = $tid","booking.request = 1"];
     $rentals = $crud->multiJoinQuery($tables,$joinConditions,$conditions,$select);
-    
-    
-    // $crud = new Crud();
-    // $tables = ['booking','landlord','property'];
-    // $joins = ["booking.landlord = landlord.lid","booking.property = property.pid"];
-    // $conditions = ["booking.status = 0","booking.tenant = $tid"];
-    // $selectColumns = ["property.rooms", "property.pid", "property.photo", "property.location", "property.description", "property.price", "landlord.lname", "landlord.lemail", "landlord.lphone","landlord.lid"];
-    // $rentals = $crud->multiJoinQuery($tables, $joins, $conditions,$selectColumns);
-
-    // $table = "property";
-    // $selectColumns = ["property.rooms", "property.pid", "property.photo", "property.location", "property.description", "property.price", "landlord.lname", "landlord.lemail", "landlord.lphone","landlord.lid"];
-    // $joinTable = "landlord";
-    // $joinCondition = "property.landlord = landlord.lid";
-    // $rentals = $crud->selectJoin($table, $joinTable, $joinCondition, $selectColumns);
 if($rentals){
+  if(mysqli_num_rows($rentals)==0){
+    echo " <script>alert('No requests till now!')</script>";
+  }
+  else{
     while ($row = mysqli_fetch_assoc($rentals)) {
       $pid = $row["pid"];
       $photo = $row["photo"];
@@ -287,10 +273,8 @@ if($rentals){
         ?>
         <button class="apply-button" onclick="showConfirm('<?php echo $bid; ?>')">Cancel</button>
       </div>
-    <?php }}
-    else{
-     echo " <script>alert('No requests till now!')</script>";
-    } ?>
+    <?php }}}
+     ?>
   </div>
 
 </div>
@@ -298,7 +282,7 @@ if($rentals){
     
     function showConfirm(bid) {
       
-  var message = "Request for Rent?";
+  var message = "Cancel the request?";
   var confirmBox = document.createElement("div");
   confirmBox.classList.add('confirm-box');
 

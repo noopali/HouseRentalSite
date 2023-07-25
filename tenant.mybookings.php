@@ -208,11 +208,11 @@ session_start();
     
   </style>
   <div class="search-section">
-    <h1>Search by Location</h1>
+    <!-- <h1>Search by Location</h1>
     <form id="search-form" onsubmit="searchByLocation(event)">
       <input type="text" id="address-input" placeholder="Enter address" required>
       <button type="submit">Go</button>
-    </form>
+    </form> -->
   </div>
 
   <div class="rents-container">
@@ -241,6 +241,10 @@ session_start();
     // $joinCondition = "property.landlord = landlord.lid";
     // $rentals = $crud->selectJoin($table, $joinTable, $joinCondition, $selectColumns);
 if($rentals){
+  if(mysqli_num_rows($rentals)==0){
+    echo "<script>alert('Empty Bookings')</script>";
+  }
+  else{
     while ($row = mysqli_fetch_assoc($rentals)) {
       $pid = $row["pid"];
       $photo = $row["photo"];
@@ -286,12 +290,9 @@ if($rentals){
         ?>
         <button class="apply-button" onclick="showConfirm('<?php echo $bid; ?>')">show details</button>
       </div>
-    <?php }}
-    else{
-     echo " <script>alert('No requests till now!')</script>";
-    } ?>
+    <?php }}}
+    ?>
   </div>
-
 </div>
   <script>
     

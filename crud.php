@@ -86,9 +86,6 @@ public function updateMultiple($table, $update_arr, $key, $operator, $value) {
     $value = "'" . $value . "'";
     $updateQuery .= " WHERE `$key` $operator $value";
 
-    // Print the generated query for debugging purposes
-    echo $updateQuery;
-
     $query = mysqli_query($this->con, $updateQuery);
 
     // Add error handling here if needed

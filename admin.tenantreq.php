@@ -317,7 +317,7 @@ height: 80px;
   <td>
   <form action="admin.operations.php" method="post">
   <input type="hidden" name="table" value = "tenant">
-    <input type="hidden" name="action" value = "verify">
+    <input type="hidden" name="action" value = "verifyTenant">
       <input type="hidden" name="temail" value = "<?php echo $Email?>">
       <button type="submit">Verify</button>
     </form>

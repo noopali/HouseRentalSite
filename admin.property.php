@@ -3,7 +3,6 @@ session_start();
 require "crud.php";
 $crud = new Crud();
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -237,7 +236,7 @@ height: 80px;
       <li><a href="admin.tenantmgmt.php">Tenant Management</a></li>
       <li><a href="admin.view.php">Landlord Management</a></li>
       <li><a href="admin.property.php">Property Management</a></li>
-        </ul>
+         </ul>
     <div class="header-btn">
       <a href="logout.php" class="log-in">Log out</a>
     </div>

@@ -39,7 +39,7 @@ $toDateSQL = date("Y-m-d", strtotime($toDate));
         $crud->insert($table, $itemsArray);
 
         echo "<script>alert('request Sucessfull')</script>";
-        echo "<script>window.location.href = 'tenant.view.php';</script>";
+        echo "<script>window.location.href = 'tenant.myrequests.php';</script>";
     }
 }
 else if($_POST['action']=='cancel'){
@@ -49,9 +49,7 @@ else if($_POST['action']=='cancel'){
     $column = 'request';
     $updatedValue = '0';
     $crud->delete($table,"bid",$bid);
-   
-    echo "<script>alert('cancelled Sucessfull')</script>";
-    echo "<script>window.location.href = 'tenant.view.php';</script>";
+    json_encode("cancelled Sucessfully");
 
 }
 else if($_POST['action']=='verify'){

@@ -250,6 +250,8 @@
           $select = $crud->selectAll("tenant","=","temail",$email);
          $tenant = mysqli_fetch_assoc($select);
          $verified = $tenant["verified"];
+         $message = $tenant["message"];
+      
         //   $verified==0 && $trequest == 0
         //   $lastName = $tenant["tlastname"];
         //  $temail =  $tenant["temail"];
@@ -258,6 +260,20 @@
         
           $trequest = $tenant["request"];
           // echo "<script>alert('{$trequest}');</script>";
+          $arr = ["var"];
+          if($verified == 1 && $message == 0) {
+            echo "<script>alert('You are a verified user!');</script>";
+            $updateData = array(
+              "message" => 1
+          );
+          $table = "tenant";
+          $key = "temail";
+          $operator = "=";
+          $value = $email;
+      
+          $crud->updateMultiple($table, $updateData, $key, $operator, $value);
+
+          }
         if($verified==0 && $trequest == 0){
        
             echo "<script>alert('Verify Your Identity to rent the rooms');</script>";
