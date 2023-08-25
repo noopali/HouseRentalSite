@@ -237,7 +237,7 @@ height: 80px;
   height: 40px;
   width: 80px;
 }
-/* .verify-form{
+.verify-form{
     display: none;
     
   }
@@ -278,8 +278,11 @@ height: 80px;
   #verify-btn{
     margin-top: 100px;
     
-  } */
-
+  }
+  .welcome{
+    margin-top: 100px;
+    text-align: center;
+  }
   </style>
 </head>
 <script src ="jquery.js"></script>
@@ -298,7 +301,7 @@ height: 80px;
       <a href="logout.php" class="log-in">Log out</a>
     </div>
   </header>
-    <h1>Welcome, <?php echo $_SESSION["lname"];?></h1>
+    <h1 class="welcome">Welcome, <?php echo $_SESSION["lname"];?></h1>
   
     <?php
     $email = $_SESSION['lemail'];
@@ -307,27 +310,65 @@ height: 80px;
    $landlord = mysqli_fetch_assoc($select);
    $verified = $landlord["verified"];
    $request = $landlord["request"];
+   $message = $landlord["message"];
 
-  //  if($verified==0 && $request==0){
-  //     echo "<script>alert('Verify Your Identity to add rentals');</script>";
-  //     echo "<button id='verify-btn'> Verify Your Identity</button>";
-  //   }
-  //   else if($request ===1 && $verified ==0){
-      
-  //     echo "<script>alert('Your Verification is pending')</script>";
-  //   }
+
     ?>
    </div>
-   <div class="addrental">
-   <button id="rentalFormButton">Add Rental</button>
-   </div>
-   
+     <?php
+     if($verified == 1 && $message == 0) {
+      echo "<script>alert('You are a verified user!');</script>";
+      $updateData = array(
+        "message" => 1
+    );
+    $table = "landlord";
+    $key = "lemail";
+    $operator = "=";
+    $value = $email;
+
+    $crud->updateMultiple($table, $updateData, $key, $operator, $value);
+
+    }
+
+      if($verified==0 && $request == 0){
+       
+        echo "<script>alert('Verify Your Identity to add your rentals');</script>";
+        echo "<button id='verify-btn'> Verify Your Identity</button>";
+      }
+      else if ($verified==0 && $request == 1){
+        echo "<script>alert('Your Verification is pending')</script>";
+      }
+
+     if($verified == 1 && $message == 0){
+      echo "<script>alert('You are verified!')</script>";
+   echo "<div class='addrental'>
+   <button id='rentalFormButton'>Add Rental</button>
+   ?>
+   </div>";
+  }
+
+   ?>
+     <div class="verify-overlay" style="display: none;">
+    <div class="verify-alert">
+      <h2>Verify yourself</h2>
+      <form id="rentalForm"  method="post" enctype="multipart/form-data" action = "landlord.operations.php">
+        
+        <input type="hidden" name="action" value="verify">
+        Enter Your Identification Document <input type="file" id="photoInput" name="photo" accept="image/jpeg, image/png, image/jpg" required>
+        <br>
+        Enter your house document <input type="file" name="photo2" id="" accept="image/jpeg, image/png, image/jpg" >
+        <br>
+        <button type="submit" id="rentalFormSubmit" name="submit" style="margin: auto;">Submit</button>
+        <br>    
+        <button type="button" id="closePopupButton">Close</button>
+      </form>
+    </div>
+  </div>
 
   <div class="rental-form-popup" id="rentalFormPopup">
     <div class="rental-form-container">
-      <h1>Hello</h1>
-      <form id="rentalForm" action="landlord.php" method="post" enctype="multipart/form-data">
-      <h2>Add Rental</h2>
+      <form id="rentalForm" action="landlord.operations.php" method="post" enctype="multipart/form-data">
+      <h2 style="text-align:center">Add Rental</h2>
       <div class="rentalformDiv">
         <input type="text" id="locationInput" placeholder="Location" name="location" required>
         <input type="file" id="photoInput" name="photo" accept=" image/jpeg, image/png, image/jpg "required>
@@ -383,11 +424,7 @@ height: 80px;
     </table>
   </div>
 
-  <!-- <div class="applicant-section">
-    <h2>Tenant Applications</h2>
-    <div id="applicantCount">Number of Applicants: <span id="applicantCountValue">0</span></div>
-    <ul id="applicantList"></ul>
-  </div> -->
+
   <script>
 
     
@@ -414,13 +451,35 @@ document.getElementById('closePopupButton').addEventListener('click', closeRenta
 
 
 
-
   </script>
   
 </body>
 </html>
 <!--<button onclick()="delete(// echo $row["pid"];?>,);">deleted</button> -->
 <script>
+    const verifyButton = document.getElementById("verify-btn");
+
+// Get the verification form element
+const verifyForm = document.querySelector(".verify-overlay");
+
+// Get the close button element inside the verification form
+const closeButton = document.getElementById("closePopupButton");
+
+// Function to show the verification form
+function showVerifyForm() {
+  verifyForm.style.display = "flex"; // Corrected: Change display to "flex" to show the form overlay
+}
+
+// Function to hide the verification form
+function hideVerifyForm() {
+  verifyForm.style.display = "none";
+}
+
+// Add event listener to the verify button
+verifyButton.addEventListener("click", showVerifyForm);
+
+// Add event listener to the close button inside the verification form
+closeButton.addEventListener("click", hideVerifyForm);
           /*
           function deleteData(pid) {
             $(document).ready(function() {

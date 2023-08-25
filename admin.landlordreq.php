@@ -3,6 +3,7 @@ session_start();
 require "crud.php";
 $crud = new Crud();
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -231,12 +232,12 @@ height: 80px;
 <header>
     <a href="#" class="logo"><img src="logo.png" alt=""></a>
     <ul class="navbar">
-    <li><a href="admin.tenantreq.php">Tenant Requests</a></li>
+      <li><a href="admin.tenantreq.php">Tenant Requests</a></li>
       <li><a href="admin.landlordreq.php">Landlord Requests</a></li>
       <li><a href="admin.tenantmgmt.php">Tenant Management</a></li>
       <li><a href="admin.view.php">Landlord Management</a></li>
       <li><a href="admin.property.php">Property Management</a></li>
-         </ul>
+        </ul>
     <div class="header-btn">
       <a href="logout.php" class="log-in">Log out</a>
     </div>
@@ -247,49 +248,68 @@ height: 80px;
    </div>
 
   <div class="rental-list">
-    <h2>Property Management</h2>
+    <h2>Landlord Management</h2>
     <table id="rentalTable">
       <thead>
         <tr>
-          <th>Property Id</th>
-          <th>picture</th>
-          <th>description</th>
+        <th>Id</th>
+          <th>Full Name</th>
+          <th>Phone</th>
+          <th>Email</th>
           <th>Address</th>
-          <th>price</th>
+          <th>ID Document</th>
+          <th>Property Document</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody id="rentalTableBody">
         <?php
-         $table = "property";
-         $select = $crud->selectNoCondition($table);
+         $table = "landlord";
+         $select = $crud->selectCondition($table,"*","request = 1 & verified = 0");
          while ($row = mysqli_fetch_assoc($select)) {
-           $id = $row["pid"];
-           $photo = $row["photo"];
-           $location = $row["location"];
-           $desc = $row["description"];
-           $price = $row["price"];
-    
-
-
-         ?>
+           $id = $row["lid"];
+           $firstName = $row["lname"];
+           $lastName = $row["llastname"];
+           $Phone = $row["lphone"];
+           $Email = $row["lemail"];
+           $Address = $row["laddress"];
+           $verified = $row["verified"];
+           $idPhoto = $row["id_document"];
+           $pPhoto  = $row["property_document"];       
+           ?>
            <tr>
-             <td><?php echo $id; ?></td>
-             <td> <img src = " <?php echo $photo ?>"></img>
-               </td>
-             
-             <td><?php echo $desc ?></td>
-             <td><?php echo $location ?></td>
-             <td><?php echo $price ?></td>
-             
-             <td><a href="delete.php?table=<?php echo $table; ?>&key=pid&value=<?php echo $id; ?>&action=delete"><button>Delete</button></a></td>
+           <td><?php echo $id; ?></td>
+             <td><?php echo $firstName." ". $lastName ?></td>
+             <td><?php echo $Phone ?></td>
+             <td><?php echo $Email ?></td>
+             <td><?php echo $Address ?></td>
+             <td> <img src="<?php echo $idPhoto ?>" alt=""></td>
+             <td><img src="<?php echo $pPhoto?>" alt=""></td>
+             <td>
+             <form action="admin.operations.php" method="get">
+  <input type="hidden" name="table" value = "landlord">
+    <input type="hidden" name="action" value = "verifyLandlord">
+      <input type="hidden" name="lemail" value = "<?php echo $Email?>">
+      <button type="submit">Approve</button>
+    </form>
            </tr>
+          
          <?php } ?>
       </tbody>
     </table>
   </div>
+
+
   <script>
 
   </script>
   
 </body>
+</html>
+
+
+  <!-- <div class="applicant-section">
+    <h2>Tenant Applications</h2>
+    <div id="applicantCount">Number of Applicants: <span id="applicantCountValue">0</span></div>
+    <ul id="applicantList"></ul>
+  </div> -->

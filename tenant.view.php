@@ -204,7 +204,7 @@
   }
   #verify-btn{
     display: inline-block;
-    margin: 0px auto;
+    margin: 7px 737px;
     height: 90px;
     width: 180px;
   }

@@ -232,9 +232,9 @@ height: 80px;
 <header>
     <a href="#" class="logo"><img src="logo.png" alt=""></a>
     <ul class="navbar">
-      <li><a href="">Tenant Requests</a></li>
-      <li><a href="">Landlord Requests</a></li>
-      <li><a href="">Tenant Management</a></li>
+    <li><a href="admin.tenantreq.php">Tenant Requests</a></li>
+      <li><a href="admin.landlordreq.php">Landlord Requests</a></li>
+      <li><a href="admin.tenantmgmt.php">Tenant Management</a></li>
       <li><a href="admin.view.php">Landlord Management</a></li>
       <li><a href="admin.property.php">Property Management</a></li>
         </ul>
@@ -283,7 +283,10 @@ height: 80px;
              <td><?php echo $Address ?></td>
              <td><?php if($verified ==1) {echo "Verified";} else{echo "Not Verified";}?></td>
              
-             <td><a href="delete.php?table=<?php echo $table; ?>&key=tid&value=<?php echo $id; ?>&action=delete"><button>Delete</button></a></td>
+             <td><a href="delete.php?table=<?php
+              echo $table; ?>&key=tid&value=<?php echo $id; ?>&action=delete"><button>
+                Delete
+              </button></a></td>
            </tr>
          <?php } ?>
       </tbody>

@@ -306,11 +306,11 @@ height: 80px;
 
          ?>
            <tr>
-             <td><?php echo $id; ?></td>
-             <td><?php echo $firstName." ". $lastName ?></td>
-             <td><?php echo $Phone ?></td>
-             <td><?php echo $Email ?></td>
-             <td><?php echo $Address ?></td>
+              <td><?php echo $id; ?></td>
+              <td><?php echo $firstName." ". $lastName ?></td>
+              <td><?php echo $Phone ?></td>
+              <td><?php echo $Email ?></td>
+              <td><?php echo $Address ?></td>
              <td>  <div id="zoomContainer">
     <img id="doc" src="<?php echo $document?>" alt="">
   </div>
