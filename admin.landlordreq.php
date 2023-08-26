@@ -248,7 +248,7 @@ height: 80px;
    </div>
 
   <div class="rental-list">
-    <h2>Landlord Management</h2>
+    <h2>Landlord Requests</h2>
     <table id="rentalTable">
       <thead>
         <tr>

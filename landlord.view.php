@@ -301,7 +301,7 @@ height: 80px;
       <a href="logout.php" class="log-in">Log out</a>
     </div>
   </header>
-    <h1 class="welcome">Welcome, <?php echo $_SESSION["lname"];?></h1>
+    <h1 class="welcome">Welcome, <?php echo $_SESSION["lname"]; ?></h1>
   
     <?php
     $email = $_SESSION['lemail'];
@@ -341,12 +341,15 @@ height: 80px;
 
      if($verified == 1 && $message == 0){
       echo "<script>alert('You are verified!')</script>";
-   echo "<div class='addrental'>
-   <button id='rentalFormButton'>Add Rental</button>
-   ?>
-   </div>";
+   
   }
+  if($verified == 1){
 
+ 
+  echo "<div class='addrental'>
+  <button id='rentalFormButton' onclick = 'return openRentalForm()'>Add Rental</button>
+  </div>";
+  }
    ?>
      <div class="verify-overlay" style="display: none;">
     <div class="verify-alert">
@@ -370,13 +373,14 @@ height: 80px;
       <form id="rentalForm" action="landlord.operations.php" method="post" enctype="multipart/form-data">
       <h2 style="text-align:center">Add Rental</h2>
       <div class="rentalformDiv">
+        <input type="hidden" name="action" value = "addRent">
         <input type="text" id="locationInput" placeholder="Location" name="location" required>
         <input type="file" id="photoInput" name="photo" accept=" image/jpeg, image/png, image/jpg "required>
         <input type="number" id="priceInput" placeholder="Price" name="price" required>
         <input type="text" id="roomsInput" placeholder="Number of rooms" name="rooms" required>
         <textarea id="descriptionInput" placeholder="Description" name="description" required></textarea>
         <button type="submit" id="rentalFormSubmit" name="submit">Rent Now</button>
-        <button type="button" id="closePopupButton" >Close</button>
+        <button type="button" id="closePopupButton" onclick="return closeRentalForm()" >Close</button>
         </div>
       </form>
     </div>
@@ -442,11 +446,11 @@ function closeRentalForm() {
   document.getElementById('rentalFormSubmit').textContent = 'Rent Now';
 }
 
-// Add event listener to the rental form button
-document.getElementById('rentalFormButton').addEventListener('click', openRentalForm);
+// // Add event listener to the rental form button
+// document.getElementById('rentalFormButton').addEventListener('click', openRentalForm());
 
-// Add event listener to the close popup button
-document.getElementById('closePopupButton').addEventListener('click', closeRentalForm);
+// // Add event listener to the close popup button
+// document.getElementById('closePopupButton').addEventListener('click', closeRentalForm());
 
 
 
@@ -476,33 +480,8 @@ function hideVerifyForm() {
 }
 
 // Add event listener to the verify button
-verifyButton.addEventListener("click", showVerifyForm);
+verifyButton.addEventListener("click", showVerifyForm());
 
 // Add event listener to the close button inside the verification form
-closeButton.addEventListener("click", hideVerifyForm);
-          /*
-          function deleteData(pid) {
-            $(document).ready(function() {
-              $.ajax({
-                 url: 'functions.php',
-                type: 'POST',
-                data: {
-                  pid: pid,
-                  action: "delete"
-                },
-                success: function(response) {
-                if (response == 1) {
-                  alert("Data deleted successfully");
-                  document.getElementById(pid).style.display = "none";
-                } else if (response == 0) {
-                  alert("Data cannot be deleted");
-                }
-              },
-             error: function() {
-               alert("Error occurred while processing the request.");
-             }
-    });
-  });
-}
-*/
+closeButton.addEventListener("click", hideVerifyForm());
         </script>
