@@ -283,6 +283,12 @@ height: 80px;
     margin-top: 100px;
     text-align: center;
   }
+
+  .error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
   </style>
 </head>
 <script src ="jquery.js"></script>
@@ -333,37 +339,30 @@ height: 80px;
       if($verified==0 && $request == 0){
        
         echo "<script>alert('Verify Your Identity to add your rentals');</script>";
-        echo "<button id='verify-btn'> Verify Your Identity</button>";
+        echo "<button id='verify-btn' onclick ='showVerifyForm();'> Verify Your Identity</button>";
       }
       else if ($verified==0 && $request == 1){
         echo "<script>alert('Your Verification is pending')</script>";
       }
-
-     if($verified == 1 && $message == 0){
-      echo "<script>alert('You are verified!')</script>";
-   
-  }
   if($verified == 1){
-
  
   echo "<div class='addrental'>
-  <button id='rentalFormButton' onclick = 'return openRentalForm()'>Add Rental</button>
+  <button id='rentalFormButton' onclick ='openRentalForm();'>Add Rental</button>
   </div>";
   }
    ?>
      <div class="verify-overlay" style="display: none;">
     <div class="verify-alert">
       <h2>Verify yourself</h2>
-      <form id="rentalForm"  method="post" enctype="multipart/form-data" action = "landlord.operations.php">
-        
+      <form id="rentalForm" name = "verifyForm" method="post" enctype="multipart/form-data" action = "landlord.operations.php">
         <input type="hidden" name="action" value="verify">
         Enter Your Identification Document <input type="file" id="photoInput" name="photo" accept="image/jpeg, image/png, image/jpg" required>
         <br>
         Enter your house document <input type="file" name="photo2" id="" accept="image/jpeg, image/png, image/jpg" >
         <br>
-        <button type="submit" id="rentalFormSubmit" name="submit" style="margin: auto;">Submit</button>
+        <button type="submit" id="rentalFormSubmit" name="submit" style="margin: auto;" onclick = " return ValidateVerifyForm()">Submit</button>
         <br>    
-        <button type="button" id="closePopupButton">Close</button>
+        <button type="button" id="closePopupButton" onclick = "hideVerifyForm();">Close</button>
       </form>
     </div>
   </div>
@@ -427,11 +426,7 @@ height: 80px;
       </tbody>
     </table>
   </div>
-
-
   <script>
-
-    
   // Function to open the rental form
 function openRentalForm() {
   rentalFormPopup.style.display = 'block';
@@ -451,10 +446,6 @@ function closeRentalForm() {
 
 // // Add event listener to the close popup button
 // document.getElementById('closePopupButton').addEventListener('click', closeRentalForm());
-
-
-
-
   </script>
   
 </body>
@@ -484,4 +475,12 @@ verifyButton.addEventListener("click", showVerifyForm());
 
 // Add event listener to the close button inside the verification form
 closeButton.addEventListener("click", hideVerifyForm());
+
+
+//verify form validation
+var img1  = document.forms["verifyForm"]["photo"];
+function ValidateVerifyForm(){
+
+}
         </script>
+

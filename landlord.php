@@ -41,11 +41,12 @@ if(isset($_POST['submit'])){
       $crud->insert($table,$item);
       header("location:landlord.view.php");
     } else {
-      echo "Invalid file format. Only JPEG, PNG, and GIF images are allowed.";
+      echo "<script>alert('Invalid file format. Only JPEG, PNG, and GIF images are allowed')</script>";
     }
   } else {
-    echo "No file uploaded.";
+    echo "<script>'No file uploaded.'</script>";
   }
 }
 ?>
+
 

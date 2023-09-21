@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     // Check if the action is "verify"
     if ($_POST['action'] === 'verify') {
-        $uploadDir = 'uploads/'; // Change this to your desired directory
+        $uploadDir = 'uploads/'; 
 
         $idDocumentPath = '';
         $houseDocumentPath = '';
@@ -36,11 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Handle the uploaded house document
         if (isset($_FILES['photo2']) && $_FILES['photo2']['error'] === 0) {
             $uploadFile2 = $uploadDir . basename($_FILES['photo2']['name']);
-
             if (move_uploaded_file($_FILES['photo2']['tmp_name'], $uploadFile2)) {
                 $houseDocumentPath = $uploadFile2;
             } else {
-                echo 'Failed to upload house document.';
+                echo " alert('Failed to upload house document.')";
+               
             }
         }
     }
@@ -103,10 +103,14 @@ if(isset($_POST['submit'])){
       $crud->insert($table,$item);
       header("location:landlord.view.php");
     } else {
-      echo "Invalid file format. Only JPEG, PNG, and GIF images are allowed.";
+      
+      echo "<script>alert('Invalid file format. Only JPEG, PNG, and GIF images are allowed.')</script>";
+      echo "<script>window.location.href = 'landlord.view.php';</script>";
     }
   } else {
-    echo "No file uploaded.";
+    echo "<script>alert('No file uploaded.')</script>";
+    echo "<script>window.location.href = 'landlord.view.php';</script>";
+    
   }
 }
 

@@ -98,6 +98,7 @@
         padding: 10px 20px;
         border-radius: 5px;
         cursor: pointer;
+        margin-bottom: 10px;
       }
 
       .rent-card .apply-form {
@@ -330,6 +331,7 @@
         $tid = $_SESSION["tid"];
         $lid = $row["lid"];
         ?>
+       
   </div>
         <div class="rent-card">
           <div class="rent-details">
@@ -347,7 +349,7 @@
                 <?php echo $description; ?>
               </p>
               <p>Owner:
-                <?php echo $landlordName ?>
+              <?php echo $landlordName ?>
               </p>
               <p>Location:
                 <?php echo $location ?>
@@ -355,6 +357,12 @@
               <?php $lid ?>
             </div>
           </div>
+          <form action="tenant.landlordProfile.php" method = "POST">
+          <input type="hidden" name="action" value ="myLandlord">
+        <input type="hidden" name="lid" value="<?php echo $lid?>">
+        <button class="apply-button" type = "submit" >About Land lord</button>
+        <br>
+        </form>
           <?php $table = "booking";
           $tid = $_SESSION['tid'];
           // $verified = $_SESSION["verified"];
