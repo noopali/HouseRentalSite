@@ -138,12 +138,13 @@ session_start();
     }
 
     .rent-card .apply-button {
-      background: red;
+      background:purple;
       color: #fff;
       border: none;
       padding: 10px 20px;
       border-radius: 5px;
       cursor: pointer;
+      margin-bottom: 20px;
     }
 
     .rent-card .apply-form {
@@ -282,6 +283,15 @@ if($rentals){
           <input type="hidden" name="action" value ="myLandlord">
         <input type="hidden" name="lid" value="<?php echo $lid?>">
         <button class="apply-button" type = "submit" >About Land lord</button>
+       
+        </form>
+        <form action="tenant.giveRating.php" method = "POST">
+          <input type="hidden" name="action" value ="myLandlord">
+        <input type="hidden" name="lid" value="<?php echo $lid?>">
+        <input type="hidden" name="tid" value ="<?php echo $tid?>">
+
+        <button class="apply-button" type = "submit" name = "action" value ="giveRating">Give Rating to landlord</button>
+       
         </form>
 
 

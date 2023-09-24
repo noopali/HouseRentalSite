@@ -356,7 +356,7 @@ height: 80px;
       <h2>Verify yourself</h2>
       <form id="rentalForm" name = "verifyForm" method="post" enctype="multipart/form-data" action = "landlord.operations.php">
         <input type="hidden" name="action" value="verify">
-        Enter Your Identification Document <input type="file" id="photoInput" name="photo" accept="image/jpeg, image/png, image/jpg" required>
+        Enter Your Identification Document <input type="file" id="photoInput" name="photo" accept="image/jpeg, image/png, image/jpg">
         <br>
         Enter your house document <input type="file" name="photo2" id="" accept="image/jpeg, image/png, image/jpg" >
         <br>
@@ -373,11 +373,11 @@ height: 80px;
       <h2 style="text-align:center">Add Rental</h2>
       <div class="rentalformDiv">
         <input type="hidden" name="action" value = "addRent">
-        <input type="text" id="locationInput" placeholder="Location" name="location" required>
-        <input type="file" id="photoInput" name="photo" accept=" image/jpeg, image/png, image/jpg "required>
-        <input type="number" id="priceInput" placeholder="Price" name="price" required>
-        <input type="text" id="roomsInput" placeholder="Number of rooms" name="rooms" required>
-        <textarea id="descriptionInput" placeholder="Description" name="description" required></textarea>
+        <input type="text" id="locationInput" placeholder="Location" name="location">
+        <input type="file" id="photoInput" name="photo" accept=" image/jpeg, image/png, image/jpg ">
+        <input type="number" id="priceInput" placeholder="Price" name="price" >
+        <input type="text" id="roomsInput" placeholder="Number of rooms" name="rooms" >
+        <textarea id="descriptionInput" placeholder="Description" name="description"></textarea>
         <button type="submit" id="rentalFormSubmit" name="submit">Rent Now</button>
         <button type="button" id="closePopupButton" onclick="return closeRentalForm()" >Close</button>
         </div>
@@ -462,7 +462,7 @@ const closeButton = document.getElementById("closePopupButton");
 
 // Function to show the verification form
 function showVerifyForm() {
-  verifyForm.style.display = "flex"; // Corrected: Change display to "flex" to show the form overlay
+  verifyForm.style.display = "flex"; 
 }
 
 // Function to hide the verification form
@@ -478,9 +478,28 @@ closeButton.addEventListener("click", hideVerifyForm());
 
 
 //verify form validation
-var img1  = document.forms["verifyForm"]["photo"];
-function ValidateVerifyForm(){
 
+function ValidateVerifyForm() {
+  var photoInput = document.getElementsByName("photo")[0];
+  var photo2Input = document.getElementsByName("photo2")[0];
+
+  var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+
+  if (photoInput.value === "" || photo2Input.value === "") {
+    alert("Please select a file for both documents.");
+    return false;
+  }
+
+  if (!allowedExtensions.exec(photoInput.value) || !allowedExtensions.exec(photo2Input.value)) {
+    alert("Please select valid image files (JPEG, PNG, JPG) for both documents.");
+    return false;
+  }
+
+  return true;
 }
+
+
+
+
         </script>
 
