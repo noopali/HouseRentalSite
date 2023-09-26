@@ -44,7 +44,9 @@
         height: 400px;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+
       }
 
     
@@ -192,7 +194,9 @@
     z-index: 1;
     overflow: auto;
   }
-
+h1{
+  color: white;
+}
   .rental-form-container {
     background-color: #fefefe;
     margin: 10% auto;
@@ -204,11 +208,12 @@
     
   }
   #verify-btn{
-    display: inline-block;
-    margin: 7px 737px;
-    height: 90px;
-    width: 180px;
+    display:block;
+    margin: 7px 30px;
+    height: 50px;
+    width: 200px;
   }
+ 
   .verify-overlay {
     position: fixed;
     top: 0;
@@ -242,10 +247,9 @@
 
     </style>
     <div class="search-section">
-      <h1>Welcome <?php echo $_SESSION['tname']?></h1>
-      </div>
-      <div class="verify">
-        <?php
+
+      <h1 >Welcome <?php echo $_SESSION['tname']?></h1>
+      <?php
         $email = $_SESSION['temail'];
           $verified = $_SESSION["verified"];
           $select = $crud->selectAll("tenant","=","temail",$email);
@@ -273,20 +277,19 @@
           $value = $email;
       
           $crud->updateMultiple($table, $updateData, $key, $operator, $value);
-
           }
-        if($verified==0 && $trequest == 0){
-       
-            echo "<script>alert('Verify Your Identity to rent the rooms');</script>";
-            echo "<button id='verify-btn'> Verify Your Identity</button>";
-          }
-          else if ($verified==0 && $trequest == 1){
-            echo "<script>alert('Your Verification is pending')</script>";
-          }
-          
-          
-
-          ?>
+       if($verified==0 && $trequest == 0){
+        echo "<script>alert('Verify Your Identity to rent the rooms');</script>";
+        echo "<button id='verify-btn'> Verify Your Identity</button>";
+      }
+      else if ($verified==0 && $trequest == 1){
+        echo "<script>alert('Your Verification is pending')</script>";
+      }
+      
+      ?>
+      </div>
+      <div class="verify">
+      
         
       </div> 
        <div class="verify-overlay" style="display: none;">
