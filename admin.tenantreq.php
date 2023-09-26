@@ -319,7 +319,7 @@ height: 80px;
   <input type="hidden" name="table" value = "tenant">
     <input type="hidden" name="action" value = "verifyTenant">
       <input type="hidden" name="temail" value = "<?php echo $Email?>">
-      <button type="submit">Verify</button>
+      <button type="submit" >Verify</button>
     </form>
   <td>
     

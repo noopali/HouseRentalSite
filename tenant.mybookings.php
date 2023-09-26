@@ -209,7 +209,8 @@ session_start();
     
   </style>
   <div class="search-section">
-    <!-- <h1>Search by Location</h1>
+  <h1>My Bookings</h1>
+    <!--
     <form id="search-form" onsubmit="searchByLocation(event)">
       <input type="text" id="address-input" placeholder="Enter address" required>
       <button type="submit">Go</button>

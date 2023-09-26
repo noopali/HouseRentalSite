@@ -306,7 +306,6 @@ h1{
   </div>
     <div class="rents-container">
       <?php
-      
       $select = ["property.pid","property.rooms", "property.photo", "property.location", "property.description", "property.price", "landlord.lname", "landlord.lemail", "landlord.lphone", "landlord.lid",]; 
       $tables = ['property', 'landlord', 'booking'];
       $joinConditions = [
@@ -315,12 +314,6 @@ h1{
       ];
       $conditions = "booking.status = 0 or booking.bid IS NULL group by property.pid";
       $rentals = $crud->leftOuterJoin($select,$tables,$joinConditions,$conditions);
-      // $table = "property";
-      // $selectColumns = ["property.rooms", "property.pid", "property.photo", "property.location", "property.description", "property.price", "landlord.lname", "landlord.lemail", "landlord.lphone","landlord.lid"];
-      // $joinTable = "landlord";
-      // $joinCondition = "property.landlord = landlord.lid";
-      // $rentals = $crud->selectJoin($table, $joinTable, $joinCondition, $selectColumns);
-    
       if($rentals){
       while ($row = mysqli_fetch_assoc($rentals)) {
         $pid = $row["pid"];
@@ -474,6 +467,21 @@ verifyButton.addEventListener("click", showVerifyForm);
 
 // Add event listener to the close button inside the verification form
 closeButton.addEventListener("click", hideVerifyForm);
+
+document.getElementById('rentalForm').addEventListener('submit', function (e) {
+    var photoInput = document.getElementById('photoInput');
+    if (photoInput.files.length === 0) {
+      e.preventDefault(); // Prevent form submission
+      alert('Please select a photo.');
+    } else {
+      var file = photoInput.files[0];
+      var fileType = file.type;
+      if (fileType !== 'image/jpeg' && fileType !== 'image/png' && fileType !== 'image/jpg') {
+        e.preventDefault(); // Prevent form submission
+        alert('Please select a valid photo file (JPEG, PNG, or JPG).');
+      }
+    }
+  });
     </script>
   </body>
 

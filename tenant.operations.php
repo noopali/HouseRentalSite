@@ -54,7 +54,6 @@ else if($_POST['action']=='cancel'){
 }
 else if($_POST['action']=='verify'){
     $crud = new Crud();
-
     $table = "tenant";
     if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
         $uploadDir = "uploads/"; // Directory where you want to store uploaded files
@@ -63,15 +62,19 @@ else if($_POST['action']=='verify'){
         // Check if the file is an image
         $allowedTypes = array('image/jpeg', 'image/png', 'image/jpg');
         if (!in_array($_FILES['photo']['type'], $allowedTypes)) {
-            echo "Error: Only JPEG, PNG, and JPG formats are supported.";
-            
-            exit;
+            echo "<script>alert('Error: Only JPEG, PNG, and JPG formats are supported.');</script>";
+          
+            header("Location:tenant.view.php");
+
         }
 
         // Move the uploaded file to the specified directory
         if (!move_uploaded_file($_FILES['photo']['tmp_name'], $uploadFile)) {
-            echo "Error uploading file.";
-            exit;
+            echo "<script> alert('Error uploading file.');";
+         
+           
+            header("Location:tenant.view.php");
+           
         }
 
         // Now you have the file stored on the server, and you can save the file path in the database.

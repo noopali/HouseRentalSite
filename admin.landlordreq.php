@@ -286,8 +286,8 @@ height: 80px;
              <td> <img src="<?php echo $idPhoto ?>" alt=""></td>
              <td><img src="<?php echo $pPhoto?>" alt=""></td>
              <td>
-             <form action="admin.operations.php" method="get">
-  <input type="hidden" name="table" value = "landlord">
+             <form action="admin.operations.php" method="post">
+    <input type="hidden" name="table" value = "landlord">
     <input type="hidden" name="action" value = "verifyLandlord">
       <input type="hidden" name="lemail" value = "<?php echo $Email?>">
       <button type="submit">Approve</button>
