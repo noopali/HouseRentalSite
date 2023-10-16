@@ -40,15 +40,13 @@ $crud = new Crud();
     .search-section {
       background-image: url('home1.jpg');
       background-size: cover;
-      height: 400px;
+      height: 300px;
       display: flex;
       align-items: center;
       justify-content: space-evenly;
       flex-direction: column;
 
     }
-
-
 
     .rents-container {
       margin: 50px;
@@ -59,9 +57,11 @@ $crud = new Crud();
       padding: 20px;
       margin-bottom: 20px;
       border-radius: 5px;
-      width: 1200px;
-      margin-left: 55px;
-      margin-right: 55px;
+      width: 900px;
+      margin: 0 auto;
+      margin-bottom: 20px;
+      border: 3px solid black;
+      display: flex;
     }
 
     .rent-card .rent-details {
@@ -75,7 +75,7 @@ $crud = new Crud();
     }
 
     .rent-card .rent-image img {
-      width: 100%;
+      width: 100px;
       height: auto;
       object-fit: cover;
       border-radius: 5px;
@@ -94,32 +94,20 @@ $crud = new Crud();
       margin: 0;
       margin-bottom: 10px;
     }
-
-    .rent-card .apply-button {
-      background: purple;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-bottom: 10px;
+    .search-section h1{
+      color: white;
     }
-
-    .rent-card .apply-button:hover {
-      background: red;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-bottom: 10px;
-    }
+   .stars{
+    color: yellow;
+    height:30px;
+    width:30px;
+   }
   </style>
   <div class="search-section">
 
     <h1>Rating And Reviews of
       <?php echo $_SESSION['tname'] ?>
-
+      <strong>⭐</strong>
     </h1>
   </div>
   <div class="rents-container">
@@ -131,7 +119,7 @@ $crud = new Crud();
     $conditions = ["landlord.lid = {$lid}"];
     
     $ratingTable = $crud->multiJoinQuery($table, $joinConditions, $conditions,$select);
-  
+ 
 
     $row = mysqli_fetch_assoc($ratingTable);
 
@@ -139,19 +127,53 @@ $crud = new Crud();
       ?>
       <div class="rent-card">
         <div class="rent-image">
-          <img src="<?php echo $photo; ?>" alt="Tenant Photo">
+          <img src="New folder/5907.jpg" alt="Tenant Photo">
         </div>
         <div class="rent-info">
-          <p><strong>From</strong> Rs.
-            <?php echo " " . $row["tname"]; ?>
-          </p>
+           <h2><?php echo " " . $row["tname"]; ?></h2> 
+         
           <p>
             <strong>Comment:</strong>
             <?php echo $row["feedback"]; ?>
           </p>
 
             <strong>stars:</strong>
-            <?php echo $row["stars"] ?>
+            <?php $stars = $row["stars"];
+          
+            switch($stars){
+              case 0:{
+                echo "<p>Zero Star Rating</p>";
+                break;
+              }
+              case 1:{
+                echo "<p><img class = 'stars' src= 'star-solid.svg'></p>";
+                break;
+              }
+              case 2:{
+                echo "<p><img class = 'stars' src= 'star-solid.svg'><img class = 'stars' src= 'star-solid.svg'>
+                </p>";
+                break;
+              }
+              case 3:{
+                echo "<p><img class = 'stars' src= 'star-solid.svg'><img class = 'stars' src= 'star-solid.svg'>
+                <img class = 'stars' src= 'star-solid.svg'></p>";
+                break;
+              }
+              case 4:{
+                echo "<p><img class = 'stars' src= 'star-solid.svg'><img class = 'stars' src= 'star-solid.svg'></p>
+                <img class = 'stars' src= 'star-solid.svg'>";
+                break;
+              }
+              case 5:{
+                echo "<p><img class = 'stars' src= 'star-solid.svg'><img class = 'stars' src= 'star-solid.svg'></p>";
+                break;
+                
+              }
+            }
+            
+            
+            ?>
+            
           </p>
           <?php $lid ?>
         </div>

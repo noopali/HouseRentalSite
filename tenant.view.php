@@ -41,11 +41,12 @@
       .search-section {
         background-image: url('home1.jpg');
         background-size: cover;
-        height: 400px;
+        height: 300px;
         display: flex;
         align-items: center;
         justify-content: space-evenly;
         flex-direction: column;
+        font-size: 20px;
 
       }
       .rents-container {
@@ -102,6 +103,7 @@
       padding: 10px 20px;
       border-radius: 5px;
       cursor: pointer;
+      width:150px;
     }
 
       .rent-card .apply-form {
@@ -197,6 +199,7 @@
   }
 h1{
   color: white;
+  margin-top: 60px;
 }
   /* .rental-form-container {
     background-color: #fefefe;
@@ -291,7 +294,6 @@ h1{
       </div>
       <div class="verify">
       
-        
       </div> 
        <div class="verify-overlay" style="display: none;">
     <div class="verify-alert">
@@ -354,13 +356,14 @@ h1{
               <p><strong>Location:</strong> 
                 <?php echo $location ?>
               </p>
-              <?php echo $lid ?>
             </div>
           </div>
+          <div class="form1">
           <form action="tenant.landlordProfile.php" method = "POST">
           <input type="hidden" name="action" value ="myLandlord">
         <input type="hidden" name="lid" value="<?php echo $lid?>">
         <button class="apply-button" type = "submit" >About Landlord</button>
+        </div>
         <br>
         </form>
         <form action="ratings.php" method = "POST">
@@ -375,11 +378,10 @@ h1{
           
         if ($verified == 1) {
           echo "<button class='apply-button' onclick='showApplyForm(" . $pid . ")'>Apply</button>";
-        }
-        
+        }    
           ?>
 
-          <!-- <button class="apply-button" onclick="showApplyForm(<?php echo $pid; ?>)">Apply</button> -->
+  
 
   <div class="apply-form" id="applyForm-<?php echo $pid; ?>">
     <h3>Apply for Rental</h3>

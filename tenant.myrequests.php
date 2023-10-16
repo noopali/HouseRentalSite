@@ -83,7 +83,7 @@ session_start();
     .search-section {
       background-image: url('home1.jpg');
       background-size: cover;
-      height: 400px;
+      height: 300px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -93,58 +93,9 @@ session_start();
       color: #fff;
       font-size: 40px;
       text-align: center;
+      margin-top: 60px;
     }
 
-    /* .rents-container {
-      margin: 50px;
-    }
-
-    .rent-card {
-      background: #D7A1F9;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 5px;
-    }
-
-    .rent-card .rent-details {
-      display: flex;
-      align-items: center;
-    }
-
-    .rent-card .rent-image {
-      flex: 0 0 200px;
-      margin-right: 20px;
-    }
-
-    .rent-card .rent-image img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      border-radius: 5px;
-    }
-
-    .rent-card .rent-info {
-      flex: 1;
-    }
-
-    .rent-card h2 {
-      margin-top: 0;
-      margin-bottom: 10px;
-    }
-
-    .rent-card p {
-      margin: 0;
-      margin-bottom: 10px;
-    }
-
-    .rent-card .apply-button {
-      background: red;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-    } */
     .rents-container {
       margin: 50px;
     }
@@ -199,6 +150,7 @@ session_start();
       padding: 10px 20px;
       border-radius: 5px;
       cursor: pointer;
+      width:150px;
     }
 
 

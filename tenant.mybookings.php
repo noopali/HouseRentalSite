@@ -83,16 +83,18 @@ session_start();
     .search-section {
       background-image: url('home1.jpg');
       background-size: cover;
-      height: 400px;
+      height: 300px;
       display: flex;
       align-items: center;
       justify-content: center;
+
     }
 
     .search-section h1 {
       color: #fff;
       font-size: 40px;
       text-align: center;
+      margin-top: 60px;
     }
     .rents-container {
       margin: 50px;
@@ -148,6 +150,7 @@ session_start();
       padding: 10px 20px;
       border-radius: 5px;
       cursor: pointer;
+      width: 150px;
     }
 
 
@@ -234,7 +237,7 @@ session_start();
     ];
     $conditions = ["booking.status = 1","booking.tenant = $tid","booking.request = 1"];
     $rentals = $crud->multiJoinQuery($tables,$joinConditions,$conditions,$select);
-if($rentals){
+if($rentals){ 
   if(mysqli_num_rows($rentals)==0){
     echo "<script>alert('Empty Bookings')</script>";
   }
@@ -288,7 +291,7 @@ if($rentals){
           <input type="hidden" name="action" value ="myLandlord">
         <input type="hidden" name="lid" value="<?php echo $lid?>">
         <button class="apply-button" type = "submit" >About Land lord</button>
-       
+       <br>
         </form>
         <form action="tenant.giveRating.php" method = "POST">
           <input type="hidden" name="action" value ="myLandlord">
