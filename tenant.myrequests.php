@@ -95,7 +95,7 @@ session_start();
       text-align: center;
     }
 
-    .rents-container {
+    /* .rents-container {
       margin: 50px;
     }
 
@@ -144,7 +144,63 @@ session_start();
       padding: 10px 20px;
       border-radius: 5px;
       cursor: pointer;
+    } */
+    .rents-container {
+      margin: 50px;
     }
+
+    .rent-card {
+      background: #D7A1F9;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      width: 900px;
+      margin: 0 auto;
+      margin-bottom: 20px;
+      border: 3px solid black;
+    }
+
+    .rent-card .rent-details {
+      display: flex;
+      align-items: center;
+    }
+
+    .rent-card .rent-image {
+      flex: 0 0 200px;
+      margin-right: 20px;
+    }
+
+    .rent-card .rent-image img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .rent-card .rent-info {
+      flex: 1;
+    }
+
+    .rent-card h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .rent-card p {
+      margin: 0;
+      margin-bottom: 10px;
+    }
+
+    .rent-card .apply-button {
+      display: block;
+      background: purple;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
 
     .rent-card .apply-form {
       display: none;

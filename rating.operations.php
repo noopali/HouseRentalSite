@@ -22,6 +22,3 @@ echo $lid;
         }
 
 ?>
-<script>
-    
-</script>

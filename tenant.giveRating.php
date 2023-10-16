@@ -39,7 +39,7 @@ $_SESSION['lid'] = $_POST["lid"];
       <textarea id="comment" name="comment" placeholder="Write your comment here" cols="20" rows="5"></textarea>
     </div>
     <div>
-      <input type="submit" value="Submit" name ="action">
+      <input type="submit" value="Submit" name ="action" onclick="validate()">
     </div>
   </form>
  
@@ -151,4 +151,5 @@ $_SESSION['lid'] = $_POST["lid"];
 }
 
 </style>
+
 </html>

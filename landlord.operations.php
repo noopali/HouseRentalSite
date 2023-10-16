@@ -65,53 +65,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
    if($_POST['action'] === 'addRent'){ 
 $crud = new Crud();
-if (isset($_POST['submit'])) {
+if(isset($_POST['submit'])){
   $location = $_POST['location'];
   $price = $_POST['price'];
   $rooms = $_POST['rooms'];
   $description = $_POST['description'];
+  if(isset($_FILES['roomPhoto'])){
+    $file_name = $_FILES['roomPhoto']['name'];
+    $file_tmp = $_FILES['roomPhoto']['tmp_name'];
+    $file_type = $_FILES['roomPhoto']['type'];
 
-  if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
-      $file_name = $_FILES['photo']['name'];
-      $file_tmp = $_FILES['photo']['tmp_name'];
-      $file_type = $_FILES['photo']['type'];
+    // Specify the allowed photo formats
+    $allowed_formats = array("image/jpeg", "image/png", "image/gif");
 
-      // Specify the allowed photo formats
-      $allowed_formats = array("image/jpeg", "image/png", "image/gif");
+    // Check if the uploaded file type is allowed
+    if (in_array($file_type, $allowed_formats)) {
+      // Specify the directory where the uploaded file should be saved
+      $upload_dir = "uploads/";
 
-      // Check if the uploaded file type is allowed
-      if (in_array($file_type, $allowed_formats)) {
-          // Specify the directory where the uploaded file should be saved
-          $upload_dir = "uploads/";
+      // Move the uploaded file to the desired location
+      move_uploaded_file($file_tmp, $upload_dir.$file_name);
+      $photo = $upload_dir.$file_name;
 
-          // Move the uploaded file to the desired location
-          move_uploaded_file($file_tmp, $upload_dir . $file_name);
-          $photo = $upload_dir . $file_name;
-
-          // Process the rest of the form data or save it to a database
-          $table = "property";
-          $landlord = $_SESSION["lid"];
-          $item = [
-              "photo" => $photo,
-              "location" => $location,
-              "description" => $description,
-              "price" => $price,
-              "landlord" => $landlord,
-              "rooms" => $rooms
-          ];
-          $crud->insert($table, $item);
-          header("location:landlord.view.php");
-      } else {
-          echo "<script>alert('Invalid file format. Only JPEG, PNG, and GIF images are allowed.')</script>";
-          echo "<script>window.location.href = 'landlord.view.php';</script>";
-      }
-  } else {
-      echo "<script>alert('No file uploaded.')</script>";
+      // Process the rest of the form data or save it to a database
+      $table = "landlord";
+      $email = $_SESSION["email"];
+      $landlord = $_SESSION["lid"];
+      $table = "property";
+      $item = [
+        "photo"=>$photo,	
+        "location"=>$location,
+        "description"=>$description,
+        "price"=>$price,
+        "landlord"=>$landlord,
+        "rooms"=>$rooms
+      ];
+      $crud->insert($table,$item);
+      header("location:landlord.view.php");
+    } else {
+      
+      echo "<script>alert('Invalid file format. Only JPEG, PNG, and GIF images are allowed.')</script>";
       echo "<script>window.location.href = 'landlord.view.php';</script>";
+    }
+  } else {
+    echo "<script>alert('No file uploaded.')</script>";
+    echo "<script>window.location.href = 'landlord.view.php';</script>";
+    
   }
 }
-}
- else {
+
+} else {
     $response = array('message' => 'Error');
     json_encode($response);
 }

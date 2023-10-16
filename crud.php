@@ -184,6 +184,7 @@ function multiJoinQuery($tables, $joins, $conditions,$selectColumns)
     }
     // Execute the query
     $statement = mysqli_query($this->con,$query);
+    // echo $query;
     return $statement;
 }
 function leftOuterJoin($select, $tables, $joinConditions, $conditions) {

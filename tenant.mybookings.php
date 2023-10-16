@@ -94,7 +94,6 @@ session_start();
       font-size: 40px;
       text-align: center;
     }
-
     .rents-container {
       margin: 50px;
     }
@@ -104,6 +103,10 @@ session_start();
       padding: 20px;
       margin-bottom: 20px;
       border-radius: 5px;
+      width: 900px;
+      margin: 0 auto;
+      margin-bottom: 20px;
+      border: 3px solid black;
     }
 
     .rent-card .rent-details {
@@ -138,14 +141,15 @@ session_start();
     }
 
     .rent-card .apply-button {
-      background:purple;
+      display: block;
+      background: purple;
       color: #fff;
       border: none;
       padding: 10px 20px;
       border-radius: 5px;
       cursor: pointer;
-      margin-bottom: 20px;
     }
+
 
     .rent-card .apply-form {
       display: none;

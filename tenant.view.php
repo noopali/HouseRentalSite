@@ -48,60 +48,61 @@
         flex-direction: column;
 
       }
-
-    
-
       .rents-container {
-        margin: 50px;
-      }
+      margin: 50px;
+    }
 
-      .rent-card {
-        background: #D7A1F9;
-        padding: 20px;
-        margin-bottom: 20px;
-        border-radius: 5px;
-      }
+    .rent-card {
+      background: #D7A1F9;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      width: 900px;
+      margin: 0 auto;
+      margin-bottom: 20px;
+      border: 3px solid black;
+    }
 
-      .rent-card .rent-details {
-        display: flex;
-        align-items: center;
-      }
+    .rent-card .rent-details {
+      display: flex;
+      align-items: center;
+    }
 
-      .rent-card .rent-image {
-        flex: 0 0 200px;
-        margin-right: 20px;
-      }
+    .rent-card .rent-image {
+      flex: 0 0 200px;
+      margin-right: 20px;
+    }
 
-      .rent-card .rent-image img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-        border-radius: 5px;
-      }
+    .rent-card .rent-image img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 5px;
+    }
 
-      .rent-card .rent-info {
-        flex: 1;
-      }
+    .rent-card .rent-info {
+      flex: 1;
+    }
 
-      .rent-card h2 {
-        margin-top: 0;
-        margin-bottom: 10px;
-      }
+    .rent-card h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
 
-      .rent-card p {
-        margin: 0;
-        margin-bottom: 10px;
-      }
+    .rent-card p {
+      margin: 0;
+      margin-bottom: 10px;
+    }
 
-      .rent-card .apply-button {
-        background: purple;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-bottom: 10px;
-      }
+    .rent-card .apply-button {
+      display: block;
+      background: purple;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
       .rent-card .apply-form {
         display: none;
@@ -197,12 +198,12 @@
 h1{
   color: white;
 }
-  .rental-form-container {
+  /* .rental-form-container {
     background-color: #fefefe;
     margin: 10% auto;
     padding: 20px;
     max-width: 500px;
-  } 
+  }  */
   .verify-form{
     display: none;
     
@@ -338,25 +339,34 @@ h1{
               <h2>Rent
                 <?php echo $pid; ?>
               </h2>
-              <p>Price: Rs.
+              <p><strong>Price</strong> Rs.
                 <?php echo " " . $row["price"]; ?>/month
               </p>
-              <p>Description:
+              <p>
+              <strong>Description:</strong> 
                 <?php echo $description; ?>
               </p>
-              <p>Owner:
+              
+              <p>
+              <strong>Owner:</strong> 
               <?php echo $landlordName ?>
               </p>
-              <p>Location:
+              <p><strong>Location:</strong> 
                 <?php echo $location ?>
               </p>
-              <?php $lid ?>
+              <?php echo $lid ?>
             </div>
           </div>
           <form action="tenant.landlordProfile.php" method = "POST">
           <input type="hidden" name="action" value ="myLandlord">
         <input type="hidden" name="lid" value="<?php echo $lid?>">
-        <button class="apply-button" type = "submit" >About Land lord</button>
+        <button class="apply-button" type = "submit" >About Landlord</button>
+        <br>
+        </form>
+        <form action="ratings.php" method = "POST">
+          <input type="hidden" name="action" value ="showRatings">
+        <input type="hidden" name="lid" value="<?php echo $lid?>">
+        <button class="apply-button" type = "submit" >show reviews</button>
         <br>
         </form>
           <?php $table = "booking";
@@ -366,7 +376,6 @@ h1{
         if ($verified == 1) {
           echo "<button class='apply-button' onclick='showApplyForm(" . $pid . ")'>Apply</button>";
         }
-        
         
           ?>
 

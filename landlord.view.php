@@ -374,11 +374,12 @@ height: 80px;
       <div class="rentalformDiv">
         <input type="hidden" name="action" value = "addRent">
         <input type="text" id="locationInput" placeholder="Location" name="location">
-        <input type="file" id="photoInput" name="photo" accept=" image/jpeg, image/png, image/jpg ">
+        <input type="file" id="roomPhoto" name="roomPhoto" accept=" image/jpeg, image/png, image/jpg ">
         <input type="number" id="priceInput" placeholder="Price" name="price" >
         <input type="text" id="roomsInput" placeholder="Number of rooms" name="rooms" >
         <textarea id="descriptionInput" placeholder="Description" name="description"></textarea>
-        <button type="submit" id="rentalFormSubmit" name="submit">Rent Now</button>
+        <button type="submit" id="rentalFormSubmit" name="submit" onclick="return validateForm()">Rent Now</button>
+
         <button type="button" id="closePopupButton" onclick="return closeRentalForm()" >Close</button>
         </div>
       </form>
@@ -494,12 +495,75 @@ function ValidateVerifyForm() {
     alert("Please select valid image files (JPEG, PNG, JPG) for both documents.");
     return false;
   }
-
   return true;
 }
+function validateForm() {
+    // Get form inputs
+    var locationInput = document.getElementById("locationInput");
+    var priceInput = document.getElementById("priceInput");
+    var roomsInput = document.getElementById("roomsInput");
+    var descriptionInput = document.getElementById("descriptionInput");
+    var roomPhotoInput = document.getElementById("roomPhoto");
+    alert(roomPhotoInput.value);
+
+    // Get the values entered by the user
+    var location = locationInput.value.trim();
+    var price = parseFloat(priceInput.value);
+    var rooms = parseInt(roomsInput.value);
+    var description = descriptionInput.value.trim();
 
 
+    // Validate location (must not be empty)
+    if (location === "") {
+      alert("Please enter a location.");
+      locationInput.focus();
+      return false; // Prevent form submission
+    }
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+    
+var selectedFiles = photoInput.value;
+if (roomPhotoInput.value === "") {
+  alert("Please select a photo of room.");
+  return false;
+}
+if (!allowedExtensions.exec(roomPhotoInput.value)) {
+  alert("Please select valid image files (JPEG, PNG, JPG).");
+  return false;
+}
+    // Validate price (must be a positive number)
+    if (isNaN(price) || price <= 0) {
+      alert("Please enter a valid price greater than 0.");
+      priceInput.focus();
+      return false; // Prevent form submission
+    }
 
+    // Validate rooms (must be a positive integer)
+    if (isNaN(rooms) || rooms <= 0 || rooms % 1 !== 0) {
+      alert("Please enter a valid number of rooms greater than 0.");
+      roomsInput.focus();
+      return false; // Prevent form submission
+    }
+
+    // Validate description (must not be empty)
+    if (description === "") {
+      alert("Please enter a description.");
+      descriptionInput.focus();
+      return false; // Prevent form submission
+    }
+
+    // Define a regular expression for allowed image file extensions
+    var allowedExtensions = /\.(jpg|jpeg|png)$/i;
+
+    // Check if the file extension is valid
+    var fileName = selectedFiles[0].name;
+    if (!allowedExtensions.test(fileName)) {
+      alert("Please select valid image files (JPEG, PNG, JPG).");
+      return false; // Prevent form submission
+    }
+
+    // If all validations pass, allow form submission
+    return true;
+  }
 
         </script>
 
