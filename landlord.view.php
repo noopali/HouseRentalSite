@@ -241,10 +241,7 @@ height: 80px;
     display: none;
     
   }
-  #verify-button{
-    display: inline-block;
-    margin: 0px auto;
-  }
+ 
   .verify-overlay {
     position: fixed;
     top: 0;
@@ -262,6 +259,8 @@ height: 80px;
     background-color: #ffffff;
     padding: 20px;
     border-radius: 5px;
+    
+
   }
 
   .verify-alert h2 {
@@ -277,7 +276,10 @@ height: 80px;
   }
   #verify-btn{
     margin-top: 100px;
-    
+    display: block;
+    margin: 0px auto ;
+    height:50px;
+    width:150px
   }
   .welcome{
     margin-top: 100px;
@@ -504,7 +506,6 @@ function validateForm() {
     var roomsInput = document.getElementById("roomsInput");
     var descriptionInput = document.getElementById("descriptionInput");
     var roomPhotoInput = document.getElementById("roomPhoto");
-    alert(roomPhotoInput.value);
 
     // Get the values entered by the user
     var location = locationInput.value.trim();

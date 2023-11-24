@@ -15,7 +15,6 @@ $crud = new Crud();
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="jquery.js"></script>
 </head>
-
 <body>
   <header>
     <a href="#" class="logo"><img src="logo.png" alt=""></a>
@@ -102,26 +101,34 @@ $crud = new Crud();
     height:30px;
     width:30px;
    }
+   h1{
+    margin-top: 70px;
+   }
   </style>
   <div class="search-section">
-
-    <h1>Rating And Reviews of
-      <?php echo $_SESSION['tname'] ?>
-      <strong>⭐</strong>
+<?php
+$lid = $_POST["lid"];
+$select = ["tenant.tname","rating.stars","rating.feedback","landlord.lname"];
+$table = ["rating","tenant","landlord"];
+$joinConditions = ["rating.tid = tenant.tid","rating.lid = landlord.lid"];
+$conditions = ["landlord.lid = {$lid}"];
+$ratingTable = $crud->multiJoinQuery($table, $joinConditions, $conditions,$select);
+// $row = mysqli_fetch_assoc($ratingTable);
+?>
+    <h1>Rating And Reviews
+      
+  
     </h1>
+    <h2>Average Rating:
+    <?php
+        $sql = $crud->selectCondition("rating","avg(stars) as avg_rating","lid = $lid");
+       $row =  mysqli_fetch_assoc($sql);
+        echo $row["avg_rating"]."/5";
+      ?>
+    </h2>
   </div>
   <div class="rents-container">
     <?php
-    $lid = $_POST["lid"];
-     $select = ["tenant.tname","rating.stars","rating.feedback","landlord.lname"];
-    $table = ["rating","tenant","landlord"];
-    $joinConditions = ["rating.tid = tenant.tid","rating.lid = landlord.lid"];
-    $conditions = ["landlord.lid = {$lid}"];
-    
-    $ratingTable = $crud->multiJoinQuery($table, $joinConditions, $conditions,$select);
- 
-
-    $row = mysqli_fetch_assoc($ratingTable);
 
     while ($row = mysqli_fetch_assoc($ratingTable)) {
       ?>
@@ -137,7 +144,7 @@ $crud = new Crud();
             <?php echo $row["feedback"]; ?>
           </p>
 
-            <strong>stars:</strong>
+            <strong>Stars:</strong>
             <?php $stars = $row["stars"];
           
             switch($stars){
@@ -146,32 +153,45 @@ $crud = new Crud();
                 break;
               }
               case 1:{
-                echo "<p><img class = 'stars' src= 'star-solid.svg'></p>";
+                echo "<p><img class = 'stars' src= 'stars.png'></p>";
                 break;
               }
               case 2:{
-                echo "<p><img class = 'stars' src= 'star-solid.svg'><img class = 'stars' src= 'star-solid.svg'>
-                </p>";
-                break;
+                echo "<p>
+                       <img class = 'stars' src= 'stars.png'>
+                       <img class = 'stars' src= 'stars.png'>
+                      </p>";
+                       break;
               }
               case 3:{
-                echo "<p><img class = 'stars' src= 'star-solid.svg'><img class = 'stars' src= 'star-solid.svg'>
+                echo "<p>
+                <img class = 'stars' src= 'stars.png'>
+                <img class = 'stars' src= 'stars.png'>
                 <img class = 'stars' src= 'star-solid.svg'></p>";
                 break;
               }
               case 4:{
-                echo "<p><img class = 'stars' src= 'star-solid.svg'><img class = 'stars' src= 'star-solid.svg'></p>
-                <img class = 'stars' src= 'star-solid.svg'>";
+                echo "<p>
+                <img class = 'stars' src= 'stars.png'>
+                <img class = 'stars' src= 'stars.png'>
+                <img class = 'stars' src= 'stars.png'>
+                <img class = 'stars' src= 'stars.png'>
+                </p>";
                 break;
               }
               case 5:{
-                echo "<p><img class = 'stars' src= 'star-solid.svg'><img class = 'stars' src= 'star-solid.svg'></p>";
+                echo "<p>
+                <img class = 'stars' src= 'stars.png'>
+                <img class = 'stars' src= 'stars.png'>
+                <img class = 'stars' src= 'stars.png'>
+                <img class = 'stars' src= 'stars.png'>
+                <img class = 'stars' src= 'stars.png'>
+
+                </p>";
                 break;
                 
               }
-            }
-            
-            
+            }  
             ?>
             
           </p>

@@ -52,7 +52,14 @@ $count = mysqli_num_rows($select);
       <li><strong>Address:</strong>
         <?php echo $address ?>
       </li>
+      <form action="landlord.review.php" method = "POST">
+          <input type="hidden" name="action" value ="showRatings">
+        <input type="hidden" name="lid" value="<?php echo $lid?>">
+        <button class="apply-button" type = "submit" >show reviews</button>
+        <br>
+        </form>
     </ul>
+    
     <div class="back-button">
       <a href="landlord.view.php">Back to Home</a>
     </div>

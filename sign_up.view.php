@@ -67,19 +67,19 @@
   <div class="signup-container">
     <h2>Sign Up</h2>
     <form id="signup-form" method="POST" action="signupcopy.php" onsubmit="return validateForm()">
-      <input type="text" id="firstname" placeholder="First Name" required name="firstname">
+      <input type="text" id="firstname" placeholder="First Name" name="firstname">
       <span id="firstname-error" class="error-message"></span>
-      <input type="text" id="lastname" placeholder="Last Name" required name="lastname">
+      <input type="text" id="lastname" placeholder="Last Name" name="lastname">
       <span id="lastname-error" class="error-message"></span>
 
-      <input type="password" id="password" placeholder="Password" required name="password">
+      <input type="password" id="password" placeholder="Password" name="password">
       <span id="password-error" class="error-message"></span>
-      <input type="password" id="repassword" placeholder="Retype Password" required name="rpassword">
+      <input type="password" id="repassword" placeholder="Retype Password" name="rpassword">
       <span id="repassword-error" class="error-message"></span>
-      <input type="email" id="email" placeholder="Email" required name="email">
+      <input type="email" id="email" placeholder="Email" name="email">
       <span id="email-error" class="error-message"></span>
-      <input type="tel" id="phone" placeholder="Phone Number" required name="phone">
-      <input type="text" id="address" placeholder="Address" required name="address">
+      <input type="tel" id="phone" placeholder="Phone Number" name="phone">
+      <input type="text" id="address" placeholder="Address" name="address">
       <span id="address-error" class="error-message"></span>
 
       <span id="phone-error" class="error-message"></span>
@@ -122,6 +122,7 @@
 
       // Validation checks
       var isValid = true;
+      
       if (!usernamePattern.test(firstname)) {
         displayErrorMessage('firstname', 'First name must start with an uppercase letter');
         isValid = false;
@@ -154,7 +155,6 @@
         displayErrorMessage('role', 'Please select a role');
         isValid = false;
       }
-
       return isValid;
     }
 

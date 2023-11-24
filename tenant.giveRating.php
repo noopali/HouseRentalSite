@@ -84,7 +84,6 @@ $_SESSION['lid'] = $_POST["lid"];
   width: 100%;
 }
 .stars{
-
            text-align: center;
            margin-right: 200px;
 

@@ -235,6 +235,12 @@ h1{
     background-color: #ffffff;
     padding: 20px;
     border-radius: 5px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width:500px;
   }
 
   .verify-alert h2 {
@@ -243,11 +249,18 @@ h1{
 
   .verify-alert input[type="file"] {
     margin-bottom: 10px;
+    display:block;
+    color: purple;
   }
 
   .verify-alert button {
     margin-top: 10px;
-  }
+    display:block;
+    height: 50px;
+    width:80px;
+  border-radius: 0.5rem;
+  border-radius: 5px;
+}
 
     </style>
     <div class="search-section">
@@ -301,7 +314,7 @@ h1{
       <form id="rentalForm"  method="post" enctype="multipart/form-data" action = "tenant.operations.php">
         
         <input type="hidden" name="action" value="verify">
-        Enter Your Identification Document <input type="file" id="photoInput" name="photo" accept="image/jpeg, image/png, image/jpg" required>
+        Enter Your Identification Document <input type="file" id="photoInput" name="photo" accept="image/jpeg, image/png, image/jpg">
         <button type="submit" id="rentalFormSubmit" name="submit">Submit</button>
         <button type="button" id="closePopupButton">Close</button>
       </form>

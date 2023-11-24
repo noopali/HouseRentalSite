@@ -117,6 +117,7 @@
   <!------Here is the body of homepage---->
 
   <div class="search-section">
+    <h1>Basobas: "Room Rental System"</h1>
   </div>
 
   <div class="rents-container">

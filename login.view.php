@@ -23,7 +23,6 @@
         emailError.textContent = "Email is required";
         return false;
       }
-      
       // Validate password
       if (password.trim() === "") {
         passwordError.textContent = "Password is required";
@@ -45,9 +44,9 @@
   <div class="login-container">
     <h2>Login</h2>
     <form id="login-form" action="login.php" method="POST" onsubmit="return validateLoginForm()">
-      <input type="text" id="email" placeholder="Email" required name="email">
+      <input type="text" id="email" placeholder="Email" name="email">
       <p class="error" id="emailError"></p>
-      <input type="password" id="password" placeholder="Password" required name="password">
+      <input type="password" id="password" placeholder="Password" name="password">
       <p class="error" id="passwordError"></p>
       <select id="role" required name="role">
         <option value="">Select Role</option>
@@ -56,7 +55,7 @@
         <option value="tenant">Tenant</option>
       </select>
       <p class="error" id="roleError"></p>
-      <button type="submit" name="login">Login</button>
+      <button type="submit" name="login" onclick = "return validateLoginForm()">Login</button>
     </form>
   </div>
 </body>

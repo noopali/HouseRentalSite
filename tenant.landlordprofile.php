@@ -53,7 +53,7 @@ $count = mysqli_num_rows($select);
       </li>
     </ul>
     <div class="back-button">
-      <a href="tenant.mybookings.php">Back to Home</a>
+      <a href="tenant.view.php">Back to Home</a>
     </div>
   </div>
   </div>
