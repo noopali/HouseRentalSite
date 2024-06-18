@@ -14,9 +14,6 @@ $address = $_SESSION["laddress"];
 $select = $crud->selectAll("property","=","landlord",$lid);
 $count = mysqli_num_rows($select);
 
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +28,7 @@ $count = mysqli_num_rows($select);
 
 <body>
   <div class="profile-card">
-  <img src="pp.jpg" alt="Profile Picture" class="profile-picture">
+  <img src="pictures/pp.jpg" alt="Profile Picture" class="profile-picture">
     <h2 class="profile-name">
       <?php echo "$firstname $lastname" ?>
     </h2>
