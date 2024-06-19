@@ -31,7 +31,7 @@ $address = $_SESSION["taddress"];
 
 <body>
   <div class="profile-card">
-    <img src="pp.jpg" alt="Profile Picture" class="profile-picture">
+    <img src="pictures/pp.jpg" alt="Profile Picture" class="profile-picture">
     <h2 class="profile-name">
       <?php echo "$firstname $lastname" ?>
     </h2>

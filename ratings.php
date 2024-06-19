@@ -123,6 +123,9 @@ $ratingTable = $crud->multiJoinQuery($table, $joinConditions, $conditions,$selec
     <?php
         $sql = $crud->selectCondition("rating","avg(stars) as avg_rating","lid = $lid");
        $row =  mysqli_fetch_assoc($sql);
+       if($row===0)
+        echo "No Ratings till now";
+       else
         echo $row["avg_rating"]."/5";
       ?>
     </h2>
@@ -134,7 +137,7 @@ $ratingTable = $crud->multiJoinQuery($table, $joinConditions, $conditions,$selec
       ?>
       <div class="rent-card">
         <div class="rent-image">
-          <img src="New folder/5907.jpg" alt="Tenant Photo">
+          <img src="pictures/pppictures/.jpg" alt="Tenant Photo">
         </div>
         <div class="rent-info">
            <h2><?php echo " " . $row["tname"]; ?></h2> 
@@ -153,39 +156,39 @@ $ratingTable = $crud->multiJoinQuery($table, $joinConditions, $conditions,$selec
                 break;
               }
               case 1:{
-                echo "<p><img class = 'stars' src= 'stars.png'></p>";
+                echo "<p><img class = 'stars' src= 'pictures/stars.png'></p>";
                 break;
               }
               case 2:{
                 echo "<p>
-                       <img class = 'stars' src= 'stars.png'>
-                       <img class = 'stars' src= 'stars.png'>
+                       <img class = 'stars' src= 'pictures/stars.png'>
+                       <img class = 'stars' src= 'pictures/stars.png'>
                       </p>";
                        break;
               }
               case 3:{
                 echo "<p>
-                <img class = 'stars' src= 'stars.png'>
-                <img class = 'stars' src= 'stars.png'>
-                <img class = 'stars' src= 'star-solid.svg'></p>";
+                <img class = 'stars' src= 'pictures/stars.png'>
+                <img class = 'stars' src= 'pictures/stars.png'>
+                <img class = 'stars' src= 'pictures/stars.png'></p>";
                 break;
               }
               case 4:{
                 echo "<p>
-                <img class = 'stars' src= 'stars.png'>
-                <img class = 'stars' src= 'stars.png'>
-                <img class = 'stars' src= 'stars.png'>
-                <img class = 'stars' src= 'stars.png'>
+                <img class = 'stars' src= 'pictures/stars.png'>
+                <img class = 'stars' src= 'pictures/stars.png'>
+                <img class = 'stars' src= 'pictures/stars.png'>
+                <img class = 'stars' src= 'pictures/stars.png'>
                 </p>";
                 break;
               }
               case 5:{
                 echo "<p>
-                <img class = 'stars' src= 'stars.png'>
-                <img class = 'stars' src= 'stars.png'>
-                <img class = 'stars' src= 'stars.png'>
-                <img class = 'stars' src= 'stars.png'>
-                <img class = 'stars' src= 'stars.png'>
+                <img class = 'stars' src= 'pictures/stars.png'>
+                <img class = 'stars' src= 'pictures/stars.png'>
+                <img class = 'stars' src= 'pictures/stars.png'>
+                <img class = 'stars' src= 'pictures/stars.png'>
+                <img class = 'stars' src= 'pictures/stars.png'>
 
                 </p>";
                 break;
